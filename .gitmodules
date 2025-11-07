@@ -1,0 +1,3 @@
+[submodule "addons/snotbane"]
+	path = addons/snotbane
+	url = https://github.com/snotbane/snotbane_godot.git
