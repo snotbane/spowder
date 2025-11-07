@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdr67u38poa3o"]
+
+[ext_resource type="PackedScene" uid="uid://cx1g3fipburm0" path="res://spowder/scenes/you/you.tscn" id="1_7ff25"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ff25"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ql84x"]
+sky_material = SubResource("ProceduralSkyMaterial_7ff25")
+
+[sub_resource type="Environment" id="Environment_xwyo7"]
+background_mode = 2
+sky = SubResource("Sky_ql84x")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ff25"]
+
+[node name="world" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xwyo7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, -3)
+shadow_enabled = true
+
+[node name="you" parent="." instance=ExtResource("1_7ff25")]
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+mesh = SubResource("BoxMesh_7ff25")
+
+[node name="mesh_instance_3d_2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+mesh = SubResource("BoxMesh_7ff25")
+
+[node name="mesh_instance_3d_3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+mesh = SubResource("BoxMesh_7ff25")
+
+[node name="hud_canvas" type="CanvasLayer" parent="."]
+
+[node name="hud" type="Control" parent="hud_canvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="menu_canvas" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="menu" type="Control" parent="menu_canvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
