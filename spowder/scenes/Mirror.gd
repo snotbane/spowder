@@ -52,4 +52,6 @@ func _process(delta: float) -> void:
 	reflection_camera.global_position = __reflected_position
 	reflection_camera.fov = __source_camera.fov
 
+	if is_equal_approx(__source_camera.global_basis.z.abs().dot(Vector3.UP), 1.0): return
+
 	reflection_camera.global_basis = Basis.looking_at(-__source_camera.global_basis.z).scaled(Vector3(1,1,-1))
