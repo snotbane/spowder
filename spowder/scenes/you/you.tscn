@@ -20,13 +20,14 @@ shape = SubResource("CapsuleShape3D_ehk27")
 [node name="debug_draw_3d_shape" type="Node3D" parent="shape"]
 script = ExtResource("1_f8i81")
 color = Color(0, 0.36862746, 1, 0.39215687)
-debug_visibility = 1
+debug_visibility = 3
 metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667, 0)
 
 [node name="camera" type="Camera3D" parent="head"]
+current = true
 
 [node name="debug_draw_3d_ray" type="Node3D" parent="head/camera"]
 script = ExtResource("3_6ftwj")

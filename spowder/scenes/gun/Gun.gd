@@ -6,4 +6,4 @@ extends Node3D
 signal fired(global_impulse: Vector3)
 
 func fire() -> void:
-	fired.emit(-global_basis.z * Snotbane.expanded(impulse_power))
+	fired.emit(global_basis.z * Snotbane.expanded(impulse_power))
