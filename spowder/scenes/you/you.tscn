@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx1g3fipburm0"]
+[gd_scene load_steps=6 format=3 uid="uid://cx1g3fipburm0"]
 
 [ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="1_f8i81"]
 [ext_resource type="Script" uid="uid://cfnfv1yn5habd" path="res://spowder/scenes/you/InputTurn.gd" id="1_hkixc"]
+[ext_resource type="Script" uid="uid://dlf62fdavp7e1" path="res://spowder/scripts/Pawn.gd" id="1_lxb7o"]
+[ext_resource type="Script" uid="uid://uh0to6ffnc84" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Ray.gd" id="3_6ftwj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
 radius = 0.333
 
 [node name="you" type="CharacterBody3D"]
+script = ExtResource("1_lxb7o")
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ehk27")
@@ -14,13 +17,25 @@ shape = SubResource("CapsuleShape3D_ehk27")
 [node name="debug_draw_3d_shape" type="Node3D" parent="shape"]
 script = ExtResource("1_f8i81")
 color = Color(0, 0.36862746, 1, 0.39215687)
-debug_visibility = 3
 metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
 [node name="camera" type="Camera3D" parent="head"]
+
+[node name="debug_draw_3d_ray" type="Node3D" parent="head/camera"]
+script = ExtResource("3_6ftwj")
+color = Color(0, 0.36862746, 1, 1)
+debug_visibility = 1
+metadata/_custom_type_script = "uid://uh0to6ffnc84"
+
+[node name="launcher" type="Node3D" parent="."]
+
+[node name="debug_draw_3d_ray" type="Node3D" parent="launcher"]
+script = ExtResource("3_6ftwj")
+color = Color(0.9607843, 0, 0, 1)
+metadata/_custom_type_script = "uid://uh0to6ffnc84"
 
 [node name="input_turn" type="Node" parent="." node_paths=PackedStringArray("affector_yaw", "affector_pitch")]
 script = ExtResource("1_hkixc")
