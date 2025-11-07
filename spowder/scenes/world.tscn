@@ -16,7 +16,7 @@ background_mode = 2
 sky = SubResource("Sky_ql84x")
 tonemap_mode = 2
 
-[sub_resource type="BoxMesh" id="BoxMesh_7ff25"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xwyo7"]
 
 [node name="world" type="Node3D"]
 
@@ -29,23 +29,13 @@ shadow_enabled = true
 
 [node name="debug_draw_3d_world_grid" type="Node3D" parent="."]
 top_level = true
+visible = false
 script = ExtResource("1_xwyo7")
-debug_visibility = 3
+debug_visibility = 2
 metadata/_custom_type_script = "uid://cohfknlqsckee"
 
 [node name="you" parent="." instance=ExtResource("1_7ff25")]
-
-[node name="mesh_instance_3d" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-mesh = SubResource("BoxMesh_7ff25")
-
-[node name="mesh_instance_3d_2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
-mesh = SubResource("BoxMesh_7ff25")
-
-[node name="mesh_instance_3d_3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-mesh = SubResource("BoxMesh_7ff25")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0000005, 0)
 
 [node name="hud_canvas" type="CanvasLayer" parent="."]
 
@@ -62,3 +52,8 @@ mouse_filter = 2
 layer = 2
 
 [node name="menu" parent="menu_canvas" instance=ExtResource("2_ql84x")]
+
+[node name="static_body_3d" type="StaticBody3D" parent="."]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="static_body_3d"]
+shape = SubResource("WorldBoundaryShape3D_xwyo7")

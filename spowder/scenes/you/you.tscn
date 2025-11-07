@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx1g3fipburm0"]
+[gd_scene load_steps=8 format=3 uid="uid://cx1g3fipburm0"]
 
 [ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="1_f8i81"]
 [ext_resource type="Script" uid="uid://cfnfv1yn5habd" path="res://spowder/scenes/you/InputTurn.gd" id="1_hkixc"]
 [ext_resource type="Script" uid="uid://dlf62fdavp7e1" path="res://spowder/scripts/Pawn.gd" id="1_lxb7o"]
 [ext_resource type="Script" uid="uid://uh0to6ffnc84" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Ray.gd" id="3_6ftwj"]
+[ext_resource type="Script" uid="uid://q6vvkj8wm2b4" path="res://spowder/scenes/gun/Gun.gd" id="4_6ftwj"]
+[ext_resource type="Script" uid="uid://b13ni8oa6sr6d" path="res://spowder/scenes/you/InputShoot.gd" id="6_4j7o2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
 radius = 0.333
 
 [node name="you" type="CharacterBody3D"]
 script = ExtResource("1_lxb7o")
+bounce_factor = Vector2(0.8, 0.7)
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ehk27")
@@ -17,10 +20,11 @@ shape = SubResource("CapsuleShape3D_ehk27")
 [node name="debug_draw_3d_shape" type="Node3D" parent="shape"]
 script = ExtResource("1_f8i81")
 color = Color(0, 0.36862746, 1, 0.39215687)
+debug_visibility = 1
 metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
 
 [node name="head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667, 0)
 
 [node name="camera" type="Camera3D" parent="head"]
 
@@ -30,9 +34,14 @@ color = Color(0, 0.36862746, 1, 1)
 debug_visibility = 1
 metadata/_custom_type_script = "uid://uh0to6ffnc84"
 
-[node name="launcher" type="Node3D" parent="."]
+[node name="gun" type="Node3D" parent="head"]
+script = ExtResource("4_6ftwj")
+impulse_power = Vector2(10, 10)
 
-[node name="debug_draw_3d_ray" type="Node3D" parent="launcher"]
+[node name="launcher" type="Node3D" parent="head/gun"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="debug_draw_3d_ray" type="Node3D" parent="head/gun/launcher"]
 script = ExtResource("3_6ftwj")
 color = Color(0.9607843, 0, 0, 1)
 metadata/_custom_type_script = "uid://uh0to6ffnc84"
@@ -40,6 +49,12 @@ metadata/_custom_type_script = "uid://uh0to6ffnc84"
 [node name="input_turn" type="Node" parent="." node_paths=PackedStringArray("affector_yaw", "affector_pitch")]
 script = ExtResource("1_hkixc")
 affector_yaw = NodePath("..")
-affector_pitch = NodePath("../head/camera")
+affector_pitch = NodePath("../head")
 turn_speed_mouse = Vector2(0.2, 0.2)
 turn_speed_other = Vector2(2, 2)
+
+[node name="input_shoot" type="Node" parent="."]
+script = ExtResource("6_4j7o2")
+
+[connection signal="fired" from="head/gun" to="." method="launch"]
+[connection signal="triggered" from="input_shoot" to="head/gun" method="fire"]
