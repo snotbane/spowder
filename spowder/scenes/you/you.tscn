@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx1g3fipburm0"]
+[gd_scene load_steps=9 format=3 uid="uid://cx1g3fipburm0"]
 
 [ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="1_f8i81"]
 [ext_resource type="Script" uid="uid://cfnfv1yn5habd" path="res://spowder/scenes/you/InputTurn.gd" id="1_hkixc"]
 [ext_resource type="Script" uid="uid://dlf62fdavp7e1" path="res://spowder/scripts/Pawn.gd" id="1_lxb7o"]
 [ext_resource type="Script" uid="uid://q6vvkj8wm2b4" path="res://spowder/scenes/gun/Gun.gd" id="4_6ftwj"]
 [ext_resource type="Script" uid="uid://b13ni8oa6sr6d" path="res://spowder/scenes/you/InputShoot.gd" id="6_4j7o2"]
+[ext_resource type="Script" uid="uid://clpoav1o8o1vo" path="res://spowder/scenes/you/Ammo.gd" id="6_6ftwj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
 radius = 0.333
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7yb6p"]
+size = Vector2(8, 8)
 
 [node name="you" type="CharacterBody3D"]
 script = ExtResource("1_lxb7o")
@@ -48,8 +52,62 @@ affector_pitch = NodePath("../head")
 turn_speed_mouse = Vector2(0.2, 0.2)
 turn_speed_other = Vector2(2, 2)
 
-[node name="input_shoot" type="Node" parent="."]
+[node name="input_shoot" type="Node" parent="." node_paths=PackedStringArray("ammo")]
 script = ExtResource("6_4j7o2")
+ammo = NodePath("../hud_canvas/hud/ammo_offset/ammo")
 
+[node name="hud_canvas" type="CanvasLayer" parent="."]
+
+[node name="hud" type="Control" parent="hud_canvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="center_container" type="CenterContainer" parent="hud_canvas/hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="texture_rect" type="TextureRect" parent="hud_canvas/hud/center_container"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_7yb6p")
+stretch_mode = 3
+
+[node name="ammo_offset" type="Control" parent="hud_canvas/hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ammo" type="HBoxContainer" parent="hud_canvas/hud/ammo_offset"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("6_6ftwj")
+shell_uid = "uid://ddn3c02gerhnp"
+shell_count = 2
+ignore_time = 0.5
+
+[connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
 [connection signal="fired" from="head/gun" to="." method="launch"]
 [connection signal="triggered" from="input_shoot" to="head/gun" method="fire"]

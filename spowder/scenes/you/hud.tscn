@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d12u8gxhevnqk"]
+[gd_scene load_steps=3 format=3 uid="uid://d12u8gxhevnqk"]
+
+[ext_resource type="Script" uid="uid://dngro7jwgmb08" path="res://spowder/scenes/you/HudShell.gd" id="1_4cxnl"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7yb6p"]
 size = Vector2(8, 8)
@@ -24,3 +26,40 @@ grow_vertical = 2
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_7yb6p")
 stretch_mode = 3
+
+[node name="ammo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="ammo"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="shell" type="Control" parent="ammo/h_box_container"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+script = ExtResource("1_4cxnl")
+
+[node name="color_rect" type="ColorRect" parent="ammo/h_box_container/shell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
