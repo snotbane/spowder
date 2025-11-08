@@ -26,8 +26,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.50113046)
 
 [node name="fire_audio" type="AudioStreamPlayer3D" parent="bullet_spawn_location"]
 stream = ExtResource("3_m1o2b")
+bus = &"Effects"
 
 [node name="reload_audio" type="AudioStreamPlayer3D" parent="bullet_spawn_location"]
 stream = ExtResource("4_o0mbr")
+bus = &"Effects"
 
 [connection signal="fired" from="." to="bullet_spawn_location/fire_audio" method="play" unbinds=1]

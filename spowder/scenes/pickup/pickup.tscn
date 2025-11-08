@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://djwb2hx8pdggv"]
+[gd_scene load_steps=12 format=3 uid="uid://djwb2hx8pdggv"]
 
 [ext_resource type="Script" uid="uid://ceeqhrhduk75g" path="res://spowder/scenes/pickup/Pickup.gd" id="1_flhv8"]
+[ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="2_a3voe"]
 [ext_resource type="AudioStream" uid="uid://dqdxo0tywk25s" path="res://spowder/audio/upgrade.ogg" id="2_flhv8"]
 [ext_resource type="Script" uid="uid://bvnerwx0x15br" path="res://addons/snotbane/modules/attach/RescueAudioStreamPlayer.gd" id="3_a3voe"]
 [ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="4_a16ft"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xrd4m"]
-height = 4.0
+height = 6.0
 radius = 4.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a3voe"]
@@ -120,8 +121,15 @@ script = ExtResource("1_flhv8")
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_xrd4m")
 
+[node name="debug_draw_3d_shape" type="Node3D" parent="shape"]
+script = ExtResource("2_a3voe")
+color = Color(1, 1, 1, 0.21960784)
+debug_visibility = 1
+metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
+
 [node name="collect_audio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_flhv8")
+bus = &"Effects"
 script = ExtResource("3_a3voe")
 
 [node name="visuals" type="Node3D" parent="."]

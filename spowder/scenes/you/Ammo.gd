@@ -16,14 +16,12 @@ var _shell_count : int = 1
 
 		if shell_scene == null: return
 
-		var available_prev := available_shells
-
 		while value > get_child_count():
 			add_child(shell_scene.instantiate())
 		while value < get_child_count():
 			get_child(-1).queue_free()
 
-		available_shells = available_prev
+		available_shells = shell_count
 
 @export var ignore_time : float = 0.1
 

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://clpoav1o8o1vo" path="res://spowder/scenes/you/Ammo.gd" id="6_6ftwj"]
 [ext_resource type="Script" uid="uid://dhnth3qx8cupt" path="res://spowder/scenes/you/InputBrake.gd" id="6_dylk3"]
 [ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="8_2x3ne"]
-[ext_resource type="Script" uid="uid://biptfekjlfmp6" path="res://spowder/scripts/TutorialComponent.gd" id="9_rsf2m"]
+[ext_resource type="Script" uid="uid://biptfekjlfmp6" path="res://spowder/scripts/Tutorial.gd" id="9_rsf2m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
 radius = 0.8

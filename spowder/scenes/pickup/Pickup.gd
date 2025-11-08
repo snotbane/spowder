@@ -12,4 +12,5 @@ func collect_by(who: Node3D) -> void:
 	_collect_by(who)
 	collected.emit()
 	queue_free()
+	Music.inst.ensure_progress(mini(Music.inst.progress + 1, Music.COIL_PICKUP_TRANSITION - 1))
 func _collect_by(who: Node3D) -> void: pass

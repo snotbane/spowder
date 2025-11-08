@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bigoq5raprcrh"]
+[gd_scene load_steps=5 format=3 uid="uid://bigoq5raprcrh"]
 
 [ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_vs5e1"]
 [ext_resource type="PackedScene" uid="uid://bd036iwnji2qp" path="res://spowder/scenes/pickup/shell/Shell.blend" id="2_x7ks0"]
+[ext_resource type="Material" uid="uid://4olkqj6hk2ei" path="res://spowder/scenes/pickup/shell/shell_material.tres" id="3_ao56b"]
 
 [sub_resource type="GDScript" id="GDScript_vs5e1"]
 resource_name = "PickupAmmoUpgrade"
@@ -16,6 +17,8 @@ func _collect_by(who: Node3D) -> void:
 script = SubResource("GDScript_vs5e1")
 
 [node name="Shell" parent="visuals/root" index="1" instance=ExtResource("2_x7ks0")]
-transform = Transform3D(-0.45904997, -0.62820107, -0.62820107, 0, 0.70710677, -0.70710677, 0.88841045, -0.32459733, -0.32459733, 0, 0.3310765, 0)
+
+[node name="Cylinder" parent="visuals/root/Shell" index="0"]
+material_override = ExtResource("3_ao56b")
 
 [editable path="visuals/root/Shell"]
