@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bigoq5raprcrh"]
+
+[ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_vs5e1"]
+
+[sub_resource type="GDScript" id="GDScript_vs5e1"]
+resource_name = "PickupAmmoUpgrade"
+script/source = "extends Pickup
+
+func _collect_by(who: Node3D) -> void:
+	var ammo : Ammo = Snotbane.find_child_of_type(who, \"Ammo\", true)
+	ammo.shell_count += 1
+"
+
+[node name="pickup_ammo_upgrade" instance=ExtResource("1_vs5e1")]
+script = SubResource("GDScript_vs5e1")

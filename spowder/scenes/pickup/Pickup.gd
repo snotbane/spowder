@@ -1,0 +1,15 @@
+
+class_name Pickup extends Area3D
+
+signal collected
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group(&"player"):
+		collect_by(body)
+
+
+func collect_by(who: Node3D) -> void:
+	_collect_by(who)
+	collected.emit()
+	queue_free()
+func _collect_by(who: Node3D) -> void: pass

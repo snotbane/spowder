@@ -1,22 +1,44 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx1g3fipburm0"]
+[gd_scene load_steps=14 format=3 uid="uid://cx1g3fipburm0"]
 
 [ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="1_f8i81"]
 [ext_resource type="Script" uid="uid://cfnfv1yn5habd" path="res://spowder/scenes/you/InputTurn.gd" id="1_hkixc"]
 [ext_resource type="Script" uid="uid://dlf62fdavp7e1" path="res://spowder/scripts/Pawn.gd" id="1_lxb7o"]
 [ext_resource type="PackedScene" uid="uid://b7mr0xn6bkp" path="res://spowder/scenes/weapon/shotgun.tscn" id="3_6ftwj"]
+[ext_resource type="PackedScene" uid="uid://ds37tl2me0mvh" path="res://spowder/scenes/you/rear_view_mirror.tscn" id="5_dylk3"]
 [ext_resource type="Script" uid="uid://b13ni8oa6sr6d" path="res://spowder/scenes/you/InputShoot.gd" id="6_4j7o2"]
 [ext_resource type="Script" uid="uid://clpoav1o8o1vo" path="res://spowder/scenes/you/Ammo.gd" id="6_6ftwj"]
 [ext_resource type="Script" uid="uid://dhnth3qx8cupt" path="res://spowder/scenes/you/InputBrake.gd" id="6_dylk3"]
+[ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="8_2x3ne"]
+[ext_resource type="Script" uid="uid://biptfekjlfmp6" path="res://spowder/scripts/TutorialComponent.gd" id="9_rsf2m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
-radius = 0.333
+radius = 0.8
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7yb6p"]
 size = Vector2(8, 8)
 
-[node name="you" type="CharacterBody3D"]
+[sub_resource type="GDScript" id="GDScript_dylk3"]
+resource_name = "TurnTutorial"
+script/source = "
+extends TutorialComponent
+
+@export var rotator : Node3D
+@export var max_rotation : float
+
+var accumulated_rotation : float
+var rotation_prev : Vector3
+
+func _check_complete() -> bool:
+	accumulated_rotation += rotator.global_rotation.angle_to(rotation_prev)
+	rotation_prev = rotator.global_rotation
+	return rad_to_deg(accumulated_rotation) >= max_rotation
+	
+"
+
+[node name="you" type="CharacterBody3D" groups=["player"]]
+floor_stop_on_slope = false
 script = ExtResource("1_lxb7o")
-bounce_factor = Vector2(0.8, 0.7)
+bounce_factor = Vector2(0.975, 0.7)
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ehk27")
@@ -32,6 +54,7 @@ metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667, 0)
 
 [node name="camera" type="Camera3D" parent="head"]
+cull_mask = 1048573
 current = true
 fov = 90.0
 
@@ -41,6 +64,10 @@ script = ExtResource("6_4j7o2")
 ammo = NodePath("../../hud_canvas/hud/ammo_offset/ammo")
 
 [node name="shotgun" parent="head/weapon_socket" instance=ExtResource("3_6ftwj")]
+
+[node name="mirror" parent="head" instance=ExtResource("5_dylk3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6466253, -0.11925948, -0.83808327)
+visible = false
 
 [node name="input_turn" type="Node" parent="." node_paths=PackedStringArray("affector_yaw", "affector_pitch")]
 script = ExtResource("1_hkixc")
@@ -63,6 +90,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("8_2x3ne")
 
 [node name="center_container" type="CenterContainer" parent="hud_canvas/hud"]
 layout_mode = 1
@@ -102,8 +130,78 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("6_6ftwj")
 shell_uid = "uid://ddn3c02gerhnp"
-shell_count = 2
 ignore_time = 0.5
+
+[node name="tutorials" type="Control" parent="hud_canvas/hud"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="turn" type="RichTextLabel" parent="hud_canvas/hud/tutorials" node_paths=PackedStringArray("rotator", "next")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[shake level=30 rate=40 connected=0]loOk arouNd"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_dylk3")
+rotator = NodePath("../../../..")
+max_rotation = 180.0
+state = 2
+next = NodePath("../shoot")
+
+[node name="shoot" type="RichTextLabel" parent="hud_canvas/hud/tutorials" node_paths=PackedStringArray("next")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[shake level=30 rate=40 connected=0]left buTton shoOt"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_rsf2m")
+state = 1
+next = NodePath("../brake")
+
+[node name="brake" type="RichTextLabel" parent="hud_canvas/hud/tutorials"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[shake level=30 rate=40 connected=0]right ButToN braKE"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_rsf2m")
 
 [connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
 [connection signal="fired" from="head/weapon_socket/shotgun" to="." method="launch"]
+[connection signal="fired" from="head/weapon_socket/shotgun" to="hud_canvas/hud/tutorials/shoot" method="complete" unbinds=1]
+[connection signal="brake_ended" from="input_brake" to="hud_canvas/hud/tutorials/brake" method="complete"]
+[connection signal="reloaded" from="hud_canvas/hud/ammo_offset/ammo" to="head/weapon_socket/shotgun/bullet_spawn_location/reload_audio" method="play"]
+
+[editable path="head/weapon_socket/shotgun"]

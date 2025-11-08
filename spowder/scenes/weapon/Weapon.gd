@@ -34,6 +34,7 @@ func fire() -> void:
 func create_bullet() -> Bullet:
 	var result : Bullet = bullet_scene.instantiate()
 	get_tree().root.add_child(result)
+	result._populate(owner_character)
 	_create_bullet(result)
 	return result
 func _create_bullet(bullet: Bullet) -> void:

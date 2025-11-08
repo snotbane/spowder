@@ -12,7 +12,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 
 	if event is InputEventMouseMotion:
-		_turn_input_mouse = event.relative
+		_turn_input_mouse = event.relative * get_window().content_scale_factor
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

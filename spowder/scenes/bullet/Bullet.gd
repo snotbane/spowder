@@ -25,6 +25,12 @@ func _init() -> void:
 	add_child(lifetime_timer)
 
 
+func _populate(source: PhysicsBody3D = null) -> void:
+	if source == null: return
+
+	add_collision_exception_with(source)
+
+
 func _physics_process(delta: float) -> void:
 	if not visible: return
 

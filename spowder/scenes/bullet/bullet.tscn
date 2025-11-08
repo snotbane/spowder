@@ -1,20 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmr436i83dlt2"]
+[gd_scene load_steps=6 format=3 uid="uid://bmr436i83dlt2"]
 
 [ext_resource type="Script" uid="uid://dlajrdg1im284" path="res://spowder/scenes/bullet/Bullet.gd" id="1_bu1uj"]
+[ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="2_bu1uj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_41sxo"]
-radius = 0.2
+radius = 0.3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2wx7"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbmpr"]
+render_priority = 0
+shader = ExtResource("2_bu1uj")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/color = Color(2.4218266, 0.9243834, 0.33237103, 1)
+shader_parameter/scale = 0.04
 
 [sub_resource type="SphereMesh" id="SphereMesh_bu1uj"]
-material = SubResource("StandardMaterial3D_h2wx7")
-radius = 0.25
-height = 0.5
+material = SubResource("ShaderMaterial_cbmpr")
+radius = 0.3
+height = 0.6
+radial_segments = 4
+rings = 1
 
 [node name="bullet" type="AnimatableBody3D"]
-collision_layer = 0
+collision_layer = 2
 sync_to_physics = false
 script = ExtResource("1_bu1uj")
 

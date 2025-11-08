@@ -10,6 +10,10 @@ var _resolution : int = 512
 		_resolution = value
 		viewport.size = Vector2i.ONE * _resolution
 
+@export var render_target_update_mode := SubViewport.UpdateMode.UPDATE_WHEN_VISIBLE
+
+@export var push_material_index : int
+
 var _source_camera : Camera3D
 
 var viewport : SubViewport
@@ -22,7 +26,7 @@ func _init() -> void:
 	viewport = SubViewport.new()
 	viewport.disable_3d = false
 	# viewport.transparent_bg = true
-	viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	viewport.render_target_update_mode = render_target_update_mode
 	resolution = resolution
 	add_child.call_deferred(viewport, INTERNAL_MODE_BACK)
 
@@ -31,14 +35,14 @@ func _init() -> void:
 	reflection_camera.current = false
 	viewport.add_child(reflection_camera)
 
-	material_override = ShaderMaterial.new()
-	material_override.shader = MIRROR_SHADER
-	material_override.set_shader_parameter(&"reflection", viewport.get_texture())
 
 func _ready() -> void:
 	_source_camera = (EditorInterface.get_editor_viewport_3d() if Engine.is_editor_hint() else get_viewport()).get_camera_3d()
 	reflection_camera.environment = get_world_3d().environment.duplicate()
 	reflection_camera.environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
+
+	var material : ShaderMaterial = get_surface_override_material(push_material_index)
+	material.set_shader_parameter(&"reflection", viewport.get_texture())
 
 
 func _process(delta: float) -> void:

@@ -1,19 +1,28 @@
 shader_type spatial;
-render_mode vertex_lighting;
+render_mode vertex_lighting, cull_disabled;
 
+#include "uid://b8tfxbpfli31i"
+
+uniform vec2 uv_scale = vec2(1);
 uniform vec4 color: source_color = vec4(1);
 uniform sampler2D albedo;
+uniform sampler2D normal;
+uniform sampler2D arm;
 
 uniform float scale = 0.04;
 
 void vertex() {
-	vec3 v = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	v = floor(v / scale) * scale;
-	VERTEX = (inverse(MODELVIEW_MATRIX) * vec4(v, 1.0)).xyz;
+	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, scale);
 }
 
 void fragment() {
-	ALBEDO = (texture(albedo, UV) * color).rgb;
+	vec2 uv = UV * uv_scale;
+	ALBEDO = (texture(albedo, uv) * color).rgb;
+	NORMAL = texture(normal, uv).xyz;
+	vec3 components = texture(arm, uv).xyz;
+	AO = components.x;
+	ROUGHNESS = components.y;
+	METALLIC = components.z;
 }
 
 //void light() {

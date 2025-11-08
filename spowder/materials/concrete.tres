@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bafoh333amcoa"]
+
+[ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="1_i5e0r"]
+[ext_resource type="Texture2D" uid="uid://d32fdvcrcom8k" path="res://spowder/textures/painted_plaster_wall_diff_1k.png" id="2_ux2lp"]
+[ext_resource type="Texture2D" uid="uid://4ctdocg26mps" path="res://spowder/textures/painted_plaster_wall_arm_1k.png" id="2_yirb7"]
+[ext_resource type="Texture2D" uid="uid://0p0ub5qmtlmv" path="res://spowder/textures/painted_plaster_wall_nor_dx_1k.png" id="4_ptk5o"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i5e0r")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/albedo = ExtResource("2_ux2lp")
+shader_parameter/normal = ExtResource("4_ptk5o")
+shader_parameter/arm = ExtResource("2_yirb7")
+shader_parameter/scale = 0.04

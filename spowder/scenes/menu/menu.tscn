@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://crtgbdv12prvd"]
+[gd_scene load_steps=3 format=3 uid="uid://crtgbdv12prvd"]
 
 [ext_resource type="Script" uid="uid://btwbp8ygwn64c" path="res://spowder/scenes/menu/PauseController.gd" id="1_0bspp"]
+[ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="1_da6sb"]
 
 [node name="menu" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_da6sb")
 
 [node name="background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -22,3 +25,19 @@ color = Color(0, 0, 0, 0.19607843)
 [node name="pause_controller" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("1_0bspp")
+
+[node name="rich_text_label" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[shake level=30 rate=40 connected=false]paused"
+fit_content = true
+horizontal_alignment = 1

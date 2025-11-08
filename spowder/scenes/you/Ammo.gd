@@ -1,6 +1,8 @@
 
 class_name Ammo extends Control
 
+signal reloaded
+
 @export var shell_uid : String
 @onready var shell_scene : PackedScene = load(shell_uid)
 
@@ -32,6 +34,8 @@ var available_shells : int :
 			if child.available: result += 1
 		return result
 	set(value):
+		value = clampi(value, 0, shell_count)
+		if value > available_shells: reloaded.emit()
 		for i in get_child_count():
 			get_child(i).available = i < value
 

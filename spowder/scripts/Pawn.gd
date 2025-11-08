@@ -36,11 +36,12 @@ func _on_slide_collided(collision: KinematicCollision3D) -> void:
 		bounce(collision.get_normal(i), _velocity_pre_slide)
 
 func bounce(normal: Vector3, __velocity__: Vector3 = velocity) -> void:
-	var __velocity_condensed := Snotbane.condensed(__velocity__)
+	# var __velocity_condensed := Snotbane.condensed(__velocity__)
 	# var __bounce_vector := Vector2(
 	# 	bounce_lateral_by_velocity_vertical.sample(__velocity_condensed.y),
 	# 	bounce_vertical_by_velocity_lateral.sample(__velocity_condensed.x)
 	# )
+	# velocity = __velocity__.bounce(normal) * Snotbane.expanded(__bounce_vector * bounce_factor)
 	velocity = __velocity__.bounce(normal) * Snotbane.expanded(bounce_factor)
 
 

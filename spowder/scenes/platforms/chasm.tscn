@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2trgr3urlww1"]
+
+[ext_resource type="PackedScene" uid="uid://uubf6rpd2e0r" path="res://spowder/scenes/platforms/Chasm.blend" id="1_2g4kc"]
+[ext_resource type="Material" uid="uid://bafoh333amcoa" path="res://spowder/materials/concrete.tres" id="2_2g4kc"]
+
+[node name="Chasm" instance=ExtResource("1_2g4kc")]
+
+[node name="Cylinder" parent="." index="0"]
+material_override = ExtResource("2_2g4kc")

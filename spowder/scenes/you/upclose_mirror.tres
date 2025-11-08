@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cokgefrn3onqf"]
+
+[ext_resource type="Shader" uid="uid://b7twjt3twbrd" path="res://spowder/scenes/Mirror.gdshader" id="1_i8flo"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_i8flo")
+shader_parameter/scale = 0.05

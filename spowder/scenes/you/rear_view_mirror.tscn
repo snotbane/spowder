@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds37tl2me0mvh"]
+
+[ext_resource type="PackedScene" uid="uid://btx71fvom0i4h" path="res://spowder/scenes/you/RearViewMirror.blend" id="1_5eerf"]
+[ext_resource type="Shader" uid="uid://b7twjt3twbrd" path="res://spowder/scenes/Mirror.gdshader" id="2_8450v"]
+[ext_resource type="Material" uid="uid://cmiwlcko2tai0" path="res://spowder/scenes/you/upclose.tres" id="3_mh743"]
+[ext_resource type="Script" uid="uid://dxvwmgywaldjj" path="res://spowder/scenes/Mirror.gd" id="4_8r0ac"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mh743"]
+viewport_path = NodePath("Cylinder/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m64ma"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_8450v")
+shader_parameter/reflection = SubResource("ViewportTexture_mh743")
+shader_parameter/scale = 0.05
+
+[node name="RearViewMirror" instance=ExtResource("1_5eerf")]
+
+[node name="Cylinder" parent="." index="0"]
+layers = 2
+surface_material_override/0 = ExtResource("3_mh743")
+surface_material_override/1 = SubResource("ShaderMaterial_m64ma")
+script = ExtResource("4_8r0ac")
+push_material_index = 1

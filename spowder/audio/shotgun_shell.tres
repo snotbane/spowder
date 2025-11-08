@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://cfi075p7bufny"]
+
+[ext_resource type="AudioStream" uid="uid://dyxsghy5vb2pc" path="res://spowder/audio/shotgun_shell1.ogg" id="1_m8cjg"]
+[ext_resource type="AudioStream" uid="uid://cpyp1m1qippi1" path="res://spowder/audio/shotgun_shell2.ogg" id="2_a0rdl"]
+[ext_resource type="AudioStream" uid="uid://w47fsn0gfji4" path="res://spowder/audio/shotgun_shell3.ogg" id="3_hx3fp"]
+
+[resource]
+playback_mode = 1
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("1_m8cjg")
+stream_1/stream = ExtResource("2_a0rdl")
+stream_2/stream = ExtResource("3_hx3fp")

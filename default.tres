@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://02b87o8f1c0l"]
+
+[ext_resource type="FontFile" uid="uid://datjny3eqifdc" path="res://spowder/fonts/Lacquer/Lacquer-Regular.ttf" id="1_nixot"]
+
+[resource]
+default_font = ExtResource("1_nixot")
+default_font_size = 30

@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://hkmrkdy0puto"]
+
+[ext_resource type="AudioStream" uid="uid://nqygwj2g03ls" path="res://spowder/audio/shotgun_fire6.ogg" id="1_cnb2b"]
+[ext_resource type="AudioStream" uid="uid://b67ih2wbiwtib" path="res://spowder/audio/shotgun_fire7.ogg" id="2_iqphl"]
+[ext_resource type="AudioStream" uid="uid://i3j24bxaulom" path="res://spowder/audio/shotgun_dbl_fire7.ogg" id="3_upxdy"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_cnb2b")
+stream_1/stream = ExtResource("2_iqphl")
+stream_2/stream = ExtResource("3_upxdy")
