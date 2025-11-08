@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdr67u38poa3o"]
+[gd_scene load_steps=17 format=3 uid="uid://bdr67u38poa3o"]
 
 [ext_resource type="PackedScene" uid="uid://cx1g3fipburm0" path="res://spowder/scenes/you/you.tscn" id="1_7ff25"]
 [ext_resource type="PackedScene" uid="uid://crtgbdv12prvd" path="res://spowder/scenes/menu/menu.tscn" id="2_ql84x"]
 [ext_resource type="Shader" uid="uid://b7twjt3twbrd" path="res://Mirror.gdshader" id="4_w3u3a"]
 [ext_resource type="Script" uid="uid://dxvwmgywaldjj" path="res://spowder/scenes/Mirror.gd" id="5_p0xbw"]
 [ext_resource type="Script" uid="uid://cohfknlqsckee" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_WorldGrid.gd" id="5_w3u3a"]
+[ext_resource type="PackedScene" uid="uid://bv56hqx1qap17" path="res://spowder/scenes/platforms/floor_16x16.tscn" id="6_p0xbw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ff25"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,13 +28,13 @@ albedo_color = Color(0.33, 0.33, 0.33, 1)
 material = SubResource("StandardMaterial3D_p0xbw")
 size = Vector2(50, 50)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_w3u3a"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_p0xbw"]
 viewport_path = NodePath("mirror/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0xbw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hcto"]
 render_priority = 0
 shader = ExtResource("4_w3u3a")
-shader_parameter/reflection = SubResource("ViewportTexture_w3u3a")
+shader_parameter/reflection = SubResource("ViewportTexture_p0xbw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fbfwr"]
 render_priority = 0
@@ -49,7 +50,7 @@ environment = SubResource("Environment_xwyo7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, -3)
-shadow_enabled = true
+directional_shadow_mode = 0
 
 [node name="you" parent="." instance=ExtResource("1_7ff25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7683716e-07, 4)
@@ -73,12 +74,17 @@ skeleton = NodePath("../..")
 transform = Transform3D(10.330612, 0, 0, 0, 13.854274, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 layers = 2
-material_override = SubResource("ShaderMaterial_p0xbw")
+material_override = SubResource("ShaderMaterial_0hcto")
 mesh = SubResource("QuadMesh_0hcto")
 script = ExtResource("5_p0xbw")
 resolution = 1080
 
 [node name="debug_draw_3d_world_grid" type="Node3D" parent="."]
 top_level = true
+visible = false
 script = ExtResource("5_w3u3a")
+debug_visibility = 6
 metadata/_custom_type_script = "uid://cohfknlqsckee"
+
+[node name="floor_16x16" parent="." instance=ExtResource("6_p0xbw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5444565, 1.2, -11.808202)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv56hqx1qap17"]
+
+[ext_resource type="PackedScene" uid="uid://bbbvbkbu2jcrd" path="res://spowder/scenes/platforms/floor_16x16.blend" id="1_mrby2"]
+[ext_resource type="Material" uid="uid://cl4v48g2sin5f" path="res://spowder/scenes/platforms/platform.tres" id="2_50rlo"]
+
+[node name="floor_16x16" instance=ExtResource("1_mrby2")]
+
+[node name="platform" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_50rlo")

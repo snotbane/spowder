@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cl4v48g2sin5f"]
+
+[ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="1_ph5e8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ph5e8")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/scale = 0.125

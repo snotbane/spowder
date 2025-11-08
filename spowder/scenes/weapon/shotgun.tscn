@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7mr0xn6bkp"]
+
+[ext_resource type="Script" uid="uid://q6vvkj8wm2b4" path="res://spowder/scenes/weapon/Weapon.gd" id="1_thdur"]
+[ext_resource type="Material" uid="uid://cl4v48g2sin5f" path="res://spowder/scenes/platforms/platform.tres" id="2_qtog0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_thdur"]
+size = Vector3(0.31, 0.1, 1)
+
+[node name="gun" type="Node3D" node_paths=PackedStringArray("bullet_spawn_location")]
+script = ExtResource("1_thdur")
+bullets_fired = 32
+bullet_uid = "uid://bmr436i83dlt2"
+bullet_spawn_location = NodePath("bullet_spawn_location")
+bullet_deviation_degrees = 30.0
+recoil_impulse_power = Vector2(10, 10)
+bullet_impulse_power = 70.0
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_thdur")
+surface_material_override/0 = ExtResource("2_qtog0")
+
+[node name="bullet_spawn_location" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.50113046)

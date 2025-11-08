@@ -1,5 +1,5 @@
 
-extends Node3D
+class_name Weapon extends Node3D
 
 signal fired(global_impulse: Vector3)
 

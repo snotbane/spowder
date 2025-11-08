@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx1g3fipburm0"]
+[gd_scene load_steps=10 format=3 uid="uid://cx1g3fipburm0"]
 
 [ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="1_f8i81"]
 [ext_resource type="Script" uid="uid://cfnfv1yn5habd" path="res://spowder/scenes/you/InputTurn.gd" id="1_hkixc"]
 [ext_resource type="Script" uid="uid://dlf62fdavp7e1" path="res://spowder/scripts/Pawn.gd" id="1_lxb7o"]
-[ext_resource type="Script" uid="uid://q6vvkj8wm2b4" path="res://spowder/scenes/gun/Gun.gd" id="4_6ftwj"]
+[ext_resource type="PackedScene" uid="uid://b7mr0xn6bkp" path="res://spowder/scenes/weapon/shotgun.tscn" id="3_6ftwj"]
 [ext_resource type="Script" uid="uid://b13ni8oa6sr6d" path="res://spowder/scenes/you/InputShoot.gd" id="6_4j7o2"]
 [ext_resource type="Script" uid="uid://clpoav1o8o1vo" path="res://spowder/scenes/you/Ammo.gd" id="6_6ftwj"]
+[ext_resource type="Script" uid="uid://dhnth3qx8cupt" path="res://spowder/scenes/you/InputBrake.gd" id="6_dylk3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
 radius = 0.333
@@ -32,18 +33,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667, 0)
 
 [node name="camera" type="Camera3D" parent="head"]
 current = true
+fov = 90.0
 
-[node name="gun" type="Node3D" parent="head" node_paths=PackedStringArray("bullet_spawn_location")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-script = ExtResource("4_6ftwj")
-bullets_fired = 32
-bullet_uid = "uid://bmr436i83dlt2"
-bullet_spawn_location = NodePath("bullet_spawn_location")
-bullet_deviation_degrees = 30.0
-recoil_impulse_power = Vector2(10, 10)
-bullet_impulse_power = 70.0
+[node name="weapon_socket" type="Node3D" parent="head" node_paths=PackedStringArray("ammo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5327107, -0.48869917, -0.401)
+script = ExtResource("6_4j7o2")
+ammo = NodePath("../../hud_canvas/hud/ammo_offset/ammo")
 
-[node name="bullet_spawn_location" type="Node3D" parent="head/gun"]
+[node name="shotgun" parent="head/weapon_socket" instance=ExtResource("3_6ftwj")]
 
 [node name="input_turn" type="Node" parent="." node_paths=PackedStringArray("affector_yaw", "affector_pitch")]
 script = ExtResource("1_hkixc")
@@ -52,9 +49,9 @@ affector_pitch = NodePath("../head")
 turn_speed_mouse = Vector2(0.2, 0.2)
 turn_speed_other = Vector2(2, 2)
 
-[node name="input_shoot" type="Node" parent="." node_paths=PackedStringArray("ammo")]
-script = ExtResource("6_4j7o2")
-ammo = NodePath("../hud_canvas/hud/ammo_offset/ammo")
+[node name="input_brake" type="Node" parent="."]
+script = ExtResource("6_dylk3")
+damping = 0.05
 
 [node name="hud_canvas" type="CanvasLayer" parent="."]
 
@@ -109,5 +106,4 @@ shell_count = 2
 ignore_time = 0.5
 
 [connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
-[connection signal="fired" from="head/gun" to="." method="launch"]
-[connection signal="triggered" from="input_shoot" to="head/gun" method="fire"]
+[connection signal="fired" from="head/weapon_socket/shotgun" to="." method="launch"]
