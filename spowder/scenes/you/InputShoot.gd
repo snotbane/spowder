@@ -1,5 +1,5 @@
 
-extends Node
+extends InputNode
 
 @export var ammo : Ammo
 
@@ -7,6 +7,7 @@ var weapon : Weapon :
 	get: return get_child(0) if get_child(0) is Weapon else null
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not enabled: return
 	if event.is_action_pressed(&"shoot"):
 		try_shoot()
 

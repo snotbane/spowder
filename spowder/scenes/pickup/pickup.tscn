@@ -1,22 +1,41 @@
-[gd_scene load_steps=9 format=3 uid="uid://djwb2hx8pdggv"]
+[gd_scene load_steps=11 format=3 uid="uid://djwb2hx8pdggv"]
 
 [ext_resource type="Script" uid="uid://ceeqhrhduk75g" path="res://spowder/scenes/pickup/Pickup.gd" id="1_flhv8"]
 [ext_resource type="AudioStream" uid="uid://dqdxo0tywk25s" path="res://spowder/audio/upgrade.ogg" id="2_flhv8"]
 [ext_resource type="Script" uid="uid://bvnerwx0x15br" path="res://addons/snotbane/modules/attach/RescueAudioStreamPlayer.gd" id="3_a3voe"]
+[ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="4_a16ft"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xrd4m"]
 height = 4.0
-radius = 3.0
+radius = 4.0
 
-[sub_resource type="PrismMesh" id="PrismMesh_flhv8"]
-size = Vector3(2, 2, 2)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3voe"]
+render_priority = 0
+shader = ExtResource("4_a16ft")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/color = Color(0, 0.29999995, 1, 1)
+shader_parameter/emissive = Color(0, 0.5, 1, 1)
+shader_parameter/ao_scale = 1.0
+shader_parameter/rough_scale = 1.0
+shader_parameter/metal_scale = 0.0
+shader_parameter/scale = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_flhv8"]
+material = SubResource("ShaderMaterial_a3voe")
+top_radius = 2.0
+bottom_radius = 0.2
+height = 200.0
+radial_segments = 4
+rings = 0
+cap_top = false
+cap_bottom = false
 
 [sub_resource type="Animation" id="Animation_a16ft"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("mesh:rotation")
+tracks/0/path = NodePath("root:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +47,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("mesh:position:x")
+tracks/1/path = NodePath("root:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -39,7 +58,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("mesh:position:y")
+tracks/2/path = NodePath("root:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -50,7 +69,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("mesh:position:z")
+tracks/3/path = NodePath("root:position:z")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -66,7 +85,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("mesh:rotation")
+tracks/0/path = NodePath("root:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -78,7 +97,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("mesh:position:y")
+tracks/1/path = NodePath("root:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -107,10 +126,12 @@ script = ExtResource("3_a3voe")
 
 [node name="visuals" type="Node3D" parent="."]
 
-[node name="mesh" type="MeshInstance3D" parent="visuals"]
+[node name="root" type="Node3D" parent="visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-mesh = SubResource("PrismMesh_flhv8")
-skeleton = NodePath("../..")
+
+[node name="beacon" type="MeshInstance3D" parent="visuals/root"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+mesh = SubResource("CylinderMesh_flhv8")
 
 [node name="animation_player" type="AnimationPlayer" parent="visuals"]
 libraries = {

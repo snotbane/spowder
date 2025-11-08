@@ -3,7 +3,7 @@ class_name Pawn extends CharacterBody3D
 
 signal slide_collided(collision: KinematicCollision3D)
 
-@export var bounce_factor := Vector2.ONE
+@export var bounce_factor := Vector2.ZERO
 
 # @export var bounce_lateral_by_velocity_vertical : Curve
 # @export var bounce_vertical_by_velocity_lateral : Curve

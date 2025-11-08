@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx1g3fipburm0"]
+[gd_scene load_steps=13 format=3 uid="uid://cx1g3fipburm0"]
 
 [ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="1_f8i81"]
 [ext_resource type="Script" uid="uid://cfnfv1yn5habd" path="res://spowder/scenes/you/InputTurn.gd" id="1_hkixc"]
@@ -14,13 +14,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
 radius = 0.8
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7yb6p"]
-size = Vector2(8, 8)
-
 [sub_resource type="GDScript" id="GDScript_dylk3"]
 resource_name = "TurnTutorial"
 script/source = "
-extends TutorialComponent
+extends Tutorial
 
 @export var rotator : Node3D
 @export var max_rotation : float
@@ -36,9 +33,8 @@ func _check_complete() -> bool:
 "
 
 [node name="you" type="CharacterBody3D" groups=["player"]]
-floor_stop_on_slope = false
+floor_max_angle = 1.5707964
 script = ExtResource("1_lxb7o")
-bounce_factor = Vector2(0.975, 0.7)
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ehk27")
@@ -79,10 +75,12 @@ turn_speed_other = Vector2(2, 2)
 [node name="input_brake" type="Node" parent="."]
 script = ExtResource("6_dylk3")
 damping = 0.05
+enabled = false
 
 [node name="hud_canvas" type="CanvasLayer" parent="."]
 
 [node name="hud" type="Control" parent="hud_canvas"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,30 +90,12 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("8_2x3ne")
 
-[node name="center_container" type="CenterContainer" parent="hud_canvas/hud"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="texture_rect" type="TextureRect" parent="hud_canvas/hud/center_container"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_7yb6p")
-stretch_mode = 3
-
 [node name="ammo_offset" type="Control" parent="hud_canvas/hud"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -133,16 +113,17 @@ shell_uid = "uid://ddn3c02gerhnp"
 ignore_time = 0.5
 
 [node name="tutorials" type="Control" parent="hud_canvas/hud"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="turn" type="RichTextLabel" parent="hud_canvas/hud/tutorials" node_paths=PackedStringArray("rotator", "next")]
+[node name="turn" type="RichTextLabel" parent="hud_canvas/hud/tutorials" node_paths=PackedStringArray("rotator", "next") groups=["tutorial"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,7 +132,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[shake level=30 rate=40 connected=0]loOk arouNd"
+text = "[shake level=11 rate=40 connected=0]loOk arouNd"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
@@ -162,7 +143,7 @@ max_rotation = 180.0
 state = 2
 next = NodePath("../shoot")
 
-[node name="shoot" type="RichTextLabel" parent="hud_canvas/hud/tutorials" node_paths=PackedStringArray("next")]
+[node name="shoot" type="RichTextLabel" parent="hud_canvas/hud/tutorials" groups=["tutorial"]]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -172,16 +153,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[shake level=30 rate=40 connected=0]left buTton shoOt"
+text = "[shake level=11 rate=40 connected=false]left buTton shoOt"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_rsf2m")
 state = 1
-next = NodePath("../brake")
 
-[node name="brake" type="RichTextLabel" parent="hud_canvas/hud/tutorials"]
+[node name="brake" type="RichTextLabel" parent="hud_canvas/hud/tutorials" groups=["tutorial"]]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -191,12 +171,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[shake level=30 rate=40 connected=0]right ButToN braKE"
+text = "[shake level=11 rate=40 connected=false]right ButToN braKE"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_rsf2m")
+state = 1
 
 [connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
 [connection signal="fired" from="head/weapon_socket/shotgun" to="." method="launch"]

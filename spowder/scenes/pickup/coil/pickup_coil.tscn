@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://54k7gwf85glp"]
+
+[ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_d7l0e"]
+[ext_resource type="PackedScene" uid="uid://cbslm6hp3nw7d" path="res://spowder/scenes/pickup/coil/Coil.blend" id="2_2oecj"]
+[ext_resource type="Material" uid="uid://b5qvb8uirbiwo" path="res://spowder/scenes/pickup/coil/coil_material.tres" id="3_2oecj"]
+
+[sub_resource type="GDScript" id="GDScript_s511d"]
+resource_name = "PickupCoil"
+script/source = "extends Pickup
+
+@export var bounce_factor : Vector2
+
+func _collect_by(who: Node3D) -> void:
+	who.bounce_factor = bounce_factor
+"
+
+[node name="pickup_coil" instance=ExtResource("1_d7l0e")]
+script = SubResource("GDScript_s511d")
+bounce_factor = Vector2(0.975, 0.7)
+
+[node name="beacon" parent="visuals/root" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 101.75, 0)
+
+[node name="Coil" parent="visuals/root" index="1" instance=ExtResource("2_2oecj")]
+transform = Transform3D(0.5161885, 0.9958788, 0.9958788, 0, 1.0606601, -1.0606601, -1.4083854, 0.36500037, 0.36500037, 0, -0.24741025, 0)
+
+[node name="Cylinder_001" parent="visuals/root/Coil" index="0"]
+material_override = ExtResource("3_2oecj")
+
+[editable path="visuals/root/Coil"]

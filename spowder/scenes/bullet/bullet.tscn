@@ -10,7 +10,11 @@ radius = 0.3
 render_priority = 0
 shader = ExtResource("2_bu1uj")
 shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/color = Color(2.4218266, 0.9243834, 0.33237103, 1)
+shader_parameter/color = Color(1, 0.36216664, 0.110000014, 1)
+shader_parameter/emissive = Color(1.2021524, 0.97336257, 0.34419057, 1)
+shader_parameter/ao_scale = 1.0
+shader_parameter/rough_scale = 1.0
+shader_parameter/metal_scale = 1.0
 shader_parameter/scale = 0.04
 
 [sub_resource type="SphereMesh" id="SphereMesh_bu1uj"]

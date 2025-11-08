@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://4olkqj6hk2ei"]
+
+[ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="1_5eyvo"]
+[ext_resource type="Texture2D" uid="uid://bpcmkheqee2vw" path="res://spowder/scenes/pickup/shell/shotgun_shell_albedo.png" id="2_w5gpt"]
+[ext_resource type="Texture2D" uid="uid://cucgpf07p1n6o" path="res://spowder/scenes/pickup/shell/shotgun_shell_arm.png" id="3_5sjyl"]
+[ext_resource type="Texture2D" uid="uid://bdvqi6b5jfyxn" path="res://spowder/scenes/pickup/shell/shotgun_shell_n.png" id="4_lc0mo"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5eyvo")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/emissive = Color(0, 0, 0, 1)
+shader_parameter/albedo = ExtResource("2_w5gpt")
+shader_parameter/normal = ExtResource("4_lc0mo")
+shader_parameter/arm = ExtResource("3_5sjyl")
+shader_parameter/ao_scale = 1.0
+shader_parameter/rough_scale = 1.0
+shader_parameter/metal_scale = 1.0
+shader_parameter/scale = 0.1

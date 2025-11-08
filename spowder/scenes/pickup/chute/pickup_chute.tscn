@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://8ih8c2pj748w"]
+
+[ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_bl8pf"]
+[ext_resource type="PackedScene" uid="uid://djmvt27hpcqss" path="res://spowder/scenes/pickup/chute/Chute.blend" id="2_x4cch"]
+[ext_resource type="Material" uid="uid://b7h0bb0x78wvu" path="res://spowder/scenes/pickup/chute/chute_material.tres" id="3_sxxaf"]
+
+[sub_resource type="GDScript" id="GDScript_sxxaf"]
+resource_name = "PickupChute"
+script/source = "
+extends Pickup
+
+func _collect_by(who: Node3D) -> void:
+	var input_brake : InputNode = who.find_child(\"input_brake\")
+	input_brake.enabled = true
+	Tutorial.get_tutorial(get_tree(), &\"brake\").appear()
+"
+
+[node name="pickup_chute" instance=ExtResource("1_bl8pf")]
+script = SubResource("GDScript_sxxaf")
+
+[node name="beacon" parent="visuals/root" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 101.44, 0)
+
+[node name="Chute" parent="visuals/root" index="1" instance=ExtResource("2_x4cch")]
+transform = Transform3D(2, 0, 0, 0, 1.4142135, -1.4142135, 0, 1.4142135, 1.4142135, 0, -1.33, 0)
+
+[node name="Icosphere" parent="visuals/root/Chute" index="0"]
+material_override = ExtResource("3_sxxaf")
+
+[editable path="visuals/root/Chute"]

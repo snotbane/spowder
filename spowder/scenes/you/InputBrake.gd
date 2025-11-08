@@ -1,5 +1,5 @@
 
-extends Node
+extends InputNode
 
 signal brake_started
 signal brake_ended
@@ -11,6 +11,7 @@ signal brake_ended
 var is_braking : bool
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not enabled: return
 	if event.is_action_pressed(&"brake"):
 		is_braking = true
 		brake_started.emit()
