@@ -64,7 +64,7 @@ message = "1"
 [node name="level_button_2" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
 layout_mode = 2
 disabled = true
-level_scene = "uid://looen57m2fpf"
+level_scene = "uid://ylc1spk0e2o5"
 message = "2"
 
 [node name="level_button_3" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]

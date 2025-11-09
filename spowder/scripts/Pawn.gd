@@ -42,11 +42,12 @@ func bounce(normal: Vector3, __velocity__: Vector3 = velocity) -> void:
 	# 	bounce_vertical_by_velocity_lateral.sample(__velocity_condensed.x)
 	# )
 	# velocity = __velocity__.bounce(normal) * Snotbane.expanded(__bounce_vector * bounce_factor)
-	velocity = __velocity__.bounce(normal) * Snotbane.expanded(bounce_factor)
+	velocity = __velocity__.bounce(normal) * Snotbane.expanded(bounce_factor) * (1.0 - abs(__velocity__.normalized().dot(normal)))
 
 
 func launch(global_impulse: Vector3) -> void:
 	velocity += global_impulse
 
 func spowder_launch(global_impulse: Vector3) -> void:
-	velocity = global_impulse.normalized() * (velocity.length() + global_impulse.length())
+	launch(global_impulse)
+	# velocity = global_impulse.lerp((global_impulse.normalized() * (velocity.length() + global_impulse.length())), 0.5)

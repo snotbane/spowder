@@ -187,3 +187,7 @@ jitter_scale={
 "type": "float",
 "value": 0.1
 }
+jitter_add={
+"type": "float",
+"value": 0.0
+}

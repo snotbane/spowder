@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx1g3fipburm0"]
+[gd_scene load_steps=16 format=3 uid="uid://cx1g3fipburm0"]
 
 [ext_resource type="Script" uid="uid://bdnjgdue6t5iy" path="res://addons/snotbane/modules/debug/draw/DebugDraw3D_Shape.gd" id="1_f8i81"]
 [ext_resource type="Script" uid="uid://cfnfv1yn5habd" path="res://spowder/scenes/you/InputTurn.gd" id="1_hkixc"]
@@ -18,9 +18,16 @@ radius = 0.8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ym75q"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_ym75q"]
+top_radius = 1.25
+bottom_radius = 0.0
+height = 0.1
+cap_bottom = false
+
 [node name="you" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.5707964
 script = ExtResource("1_lxb7o")
+bounce_factor = Vector2(1, 1)
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ehk27")
@@ -45,6 +52,7 @@ script = ExtResource("6_4j7o2")
 ammo = NodePath("../../hud_canvas/hud/ammo_offset/ammo")
 
 [node name="shotgun" parent="head/weapon_socket" instance=ExtResource("3_6ftwj")]
+recoil_impulse_power = Vector2(16, 12)
 
 [node name="mirror" parent="head" instance=ExtResource("5_dylk3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6466253, -0.11925948, -0.83808327)
@@ -99,7 +107,8 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("6_6ftwj")
 shell_uid = "uid://ddn3c02gerhnp"
-ignore_time = 0.5
+shell_count = 2
+ignore_time = 0.01
 
 [node name="menu_canvas" type="CanvasLayer" parent="."]
 layer = 10
@@ -167,6 +176,11 @@ script = ExtResource("12_s2eyp")
 bbcode = "[shake level=11 rate=40 connected=0]"
 message = "exit"
 label_visible = true
+
+[node name="shadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_ym75q")
 
 [connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
 [connection signal="fired" from="head/weapon_socket/shotgun" to="." method="spowder_launch"]
