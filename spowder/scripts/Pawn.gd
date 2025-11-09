@@ -46,4 +46,4 @@ func bounce(normal: Vector3, __velocity__: Vector3 = velocity) -> void:
 
 
 func launch(global_impulse: Vector3) -> void:
-	velocity += global_impulse
+	velocity = global_impulse.normalized() * (velocity.length() + global_impulse.length())

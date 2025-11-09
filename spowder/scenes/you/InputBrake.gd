@@ -10,7 +10,7 @@ signal brake_ended
 
 var is_braking : bool
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not enabled: return
 	if event.is_action_pressed(&"brake"):
 		is_braking = true

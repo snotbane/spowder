@@ -9,7 +9,7 @@ extends InputNode
 
 var _turn_input_mouse : Vector2
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 
 	if event is InputEventMouseMotion:
