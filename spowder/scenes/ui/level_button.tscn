@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://pb1u04qg7j3w"]
+
+[ext_resource type="PackedScene" uid="uid://wobw7sorl445" path="res://spowder/scenes/ui/rich_button.tscn" id="1_atkee"]
+[ext_resource type="Script" uid="uid://lvrle3fkpe4j" path="res://spowder/scenes/ui/LevelButton.gd" id="2_ltpj3"]
+
+[node name="level_button" instance=ExtResource("1_atkee")]
+custom_minimum_size = Vector2(30, 30)
+script = ExtResource("2_ltpj3")
+level_scene = ""
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

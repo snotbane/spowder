@@ -22,8 +22,9 @@ size = Vector3(15, 1, 15)
 [sub_resource type="BoxMesh" id="BoxMesh_nuo3e"]
 size = Vector3(15, 1, 15)
 
-[node name="level_00" instance=ExtResource("1_hlbg2")]
-next_level = "uid://c17kh0ypm64l5"
+[node name="level_01" instance=ExtResource("1_hlbg2")]
+next_level = "uid://ylc1spk0e2o5"
+level_index = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 environment = SubResource("Environment_i4wya")

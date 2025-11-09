@@ -3,9 +3,9 @@ class_name Level extends Node3D
 static var inst : Level
 
 signal completed
-signal reset_requested
 
 @export var next_level : String
+@export var level_index : int = 0
 
 var is_completed : bool
 
@@ -25,6 +25,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	LevelProgression.unlock_up_to(level_index)
 	is_completed = false
 
 	for pickup: Node in get_tree().get_nodes_in_group(&"pickup"):
@@ -32,6 +33,7 @@ func _ready() -> void:
 
 	for enemy: Node in get_tree().get_nodes_in_group(&"enemy"):
 		enemy.tree_exited.connect(_check_completion)
+
 
 
 func _check_completion() -> void:

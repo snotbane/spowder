@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmb0oadsxhycs"]
+
+[ext_resource type="Script" uid="uid://cg7rqcilp6dkr" path="res://spowder/scripts/Message.gd" id="1_2oxse"]
+[ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="1_x76qb"]
+[ext_resource type="Script" uid="uid://b8hv42vsxprdq" path="res://spowder/scenes/levels/LevelProgression.gd" id="2_2ko7v"]
+[ext_resource type="PackedScene" uid="uid://pb1u04qg7j3w" path="res://spowder/scenes/ui/level_button.tscn" id="2_x76qb"]
+
+[sub_resource type="GDScript" id="GDScript_g3to3"]
+script/source = "extends Node3D
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+"
+
+[node name="main_menu" type="Node3D"]
+script = SubResource("GDScript_g3to3")
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="control" type="Control" parent="canvas_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x76qb")
+
+[node name="v_box_container" type="VBoxContainer" parent="canvas_layer/control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -32.0
+offset_right = 66.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="message" type="Control" parent="canvas_layer/control/v_box_container"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+script = ExtResource("1_2oxse")
+bbcode = "[shake level=11 rate=40 connected=0]"
+message = "Level select"
+label_visible = true
+metadata/_custom_type_script = "uid://cg7rqcilp6dkr"
+
+[node name="grid_container" type="GridContainer" parent="canvas_layer/control/v_box_container"]
+layout_mode = 2
+columns = 4
+script = ExtResource("2_2ko7v")
+
+[node name="level_button" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+level_scene = "uid://looen57m2fpf"
+message = "1"
+
+[node name="level_button_2" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+level_scene = "uid://looen57m2fpf"
+message = "2"
+
+[node name="level_button_3" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+level_scene = "uid://looen57m2fpf"
+message = "3"
+
+[node name="level_button_4" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+level_scene = "uid://looen57m2fpf"
+message = "4"
+
+[node name="level_button_5" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+level_scene = "uid://looen57m2fpf"
+message = "5"
+
+[node name="exit" type="Button" parent="canvas_layer/control/v_box_container"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+script = ExtResource("1_2oxse")
+bbcode = "[shake level=11 rate=40 connected=0]"
+message = "exit game"
+label_visible = true
+
+[connection signal="pressed" from="canvas_layer/control/v_box_container/exit" to="." method="_on_exit_pressed"]
