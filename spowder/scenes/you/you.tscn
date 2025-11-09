@@ -180,7 +180,7 @@ script = ExtResource("9_rsf2m")
 state = 1
 
 [connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
-[connection signal="fired" from="head/weapon_socket/shotgun" to="." method="launch"]
+[connection signal="fired" from="head/weapon_socket/shotgun" to="." method="spowder_launch"]
 [connection signal="fired" from="head/weapon_socket/shotgun" to="hud_canvas/hud/tutorials/shoot" method="complete" unbinds=1]
 [connection signal="brake_ended" from="input_brake" to="hud_canvas/hud/tutorials/brake" method="complete"]
 [connection signal="reloaded" from="hud_canvas/hud/ammo_offset/ammo" to="head/weapon_socket/shotgun/bullet_spawn_location/reload_audio" method="play"]
