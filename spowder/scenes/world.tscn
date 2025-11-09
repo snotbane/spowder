@@ -83,11 +83,17 @@ render_target_update_mode = 4
 [node name="pickup_shell" parent="." instance=ExtResource("8_0hcto")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 
+[node name="pickup_shell_2" parent="." instance=ExtResource("8_0hcto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 46, 0)
+
+[node name="pickup_shell_3" parent="." instance=ExtResource("8_0hcto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 24, 64)
+
 [node name="Chasm" parent="." instance=ExtResource("9_duejx")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="pickup_chute" parent="." instance=ExtResource("8_duejx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.534929, 8.853066, 0.96887827)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.45584, 44.333633, 0.96887827)
 
 [node name="pickup_coil" parent="." instance=ExtResource("7_0hcto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.746238, 6.7652082, -0.19998646)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25376225, 48.765213, -0.19998646)

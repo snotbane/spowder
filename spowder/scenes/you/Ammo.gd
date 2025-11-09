@@ -46,5 +46,5 @@ func _on_character_collided(collision: KinematicCollision3D) -> void:
 	for i in collision.get_collision_count():
 		if Snotbane.NOW_MICRO - recent_reloads.get(collision.get_collider_rid(i), 0) < ignore_time: continue
 		recent_reloads[collision.get_collider_rid(i)] = Snotbane.NOW_MICRO
-		available_shells += 1
+		available_shells = shell_count
 		break
