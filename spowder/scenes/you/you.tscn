@@ -9,28 +9,11 @@
 [ext_resource type="Script" uid="uid://clpoav1o8o1vo" path="res://spowder/scenes/you/Ammo.gd" id="6_6ftwj"]
 [ext_resource type="Script" uid="uid://dhnth3qx8cupt" path="res://spowder/scenes/you/InputBrake.gd" id="6_dylk3"]
 [ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="8_2x3ne"]
-[ext_resource type="Script" uid="uid://biptfekjlfmp6" path="res://spowder/scripts/Tutorial.gd" id="9_rsf2m"]
+[ext_resource type="Script" uid="uid://d3mcyu0yahqo7" path="res://spowder/scenes/you/InputReset.gd" id="8_ngbxx"]
+[ext_resource type="Script" uid="uid://btwbp8ygwn64c" path="res://spowder/scenes/menu/PauseController.gd" id="12_ym75q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehk27"]
 radius = 0.8
-
-[sub_resource type="GDScript" id="GDScript_dylk3"]
-resource_name = "TurnTutorial"
-script/source = "
-extends Tutorial
-
-@export var rotator : Node3D
-@export var max_rotation : float
-
-var accumulated_rotation : float
-var rotation_prev : Vector3
-
-func _check_complete() -> bool:
-	accumulated_rotation += rotator.global_rotation.angle_to(rotation_prev)
-	rotation_prev = rotator.global_rotation
-	return rad_to_deg(accumulated_rotation) >= max_rotation
-	
-"
 
 [node name="you" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.5707964
@@ -40,10 +23,9 @@ script = ExtResource("1_lxb7o")
 shape = SubResource("CapsuleShape3D_ehk27")
 
 [node name="debug_draw_3d_shape" type="Node3D" parent="shape"]
-visible = false
 script = ExtResource("1_f8i81")
 color = Color(0, 0.36862746, 1, 0.39215687)
-debug_visibility = 0
+debug_visibility = 1
 metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
 
 [node name="head" type="Node3D" parent="."]
@@ -76,6 +58,10 @@ turn_speed_other = Vector2(2, 2)
 script = ExtResource("6_dylk3")
 damping = 0.05
 enabled = false
+
+[node name="input_reset" type="Timer" parent="."]
+wait_time = 1.5
+script = ExtResource("8_ngbxx")
 
 [node name="hud_canvas" type="CanvasLayer" parent="."]
 
@@ -112,77 +98,51 @@ script = ExtResource("6_6ftwj")
 shell_uid = "uid://ddn3c02gerhnp"
 ignore_time = 0.5
 
-[node name="tutorials" type="Control" parent="hud_canvas/hud"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="menu_canvas" type="CanvasLayer" parent="."]
+layer = 10
 
-[node name="turn" type="RichTextLabel" parent="hud_canvas/hud/tutorials" node_paths=PackedStringArray("rotator", "next") groups=["tutorial"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "[shake level=11 rate=40 connected=0]loOk arouNd"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-script = SubResource("GDScript_dylk3")
-rotator = NodePath("../../../..")
-max_rotation = 180.0
-state = 2
-next = NodePath("../shoot")
-
-[node name="shoot" type="RichTextLabel" parent="hud_canvas/hud/tutorials" groups=["tutorial"]]
+[node name="menu" type="Control" parent="menu_canvas"]
+process_mode = 2
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "[shake level=11 rate=40 connected=false]left buTton shoOt"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("9_rsf2m")
-state = 1
+theme = ExtResource("8_2x3ne")
 
-[node name="brake" type="RichTextLabel" parent="hud_canvas/hud/tutorials" groups=["tutorial"]]
-visible = false
+[node name="background" type="ColorRect" parent="menu_canvas/menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="pause_controller" type="Node" parent="menu_canvas/menu"]
+process_mode = 3
+script = ExtResource("12_ym75q")
+
+[node name="rich_text_label" type="RichTextLabel" parent="menu_canvas/menu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
-text = "[shake level=11 rate=40 connected=false]right ButToN braKE"
+text = "[shake level=11 rate=40 connected=false]paused"
 fit_content = true
-scroll_active = false
 horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("9_rsf2m")
-state = 1
 
 [connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
 [connection signal="fired" from="head/weapon_socket/shotgun" to="." method="spowder_launch"]
-[connection signal="fired" from="head/weapon_socket/shotgun" to="hud_canvas/hud/tutorials/shoot" method="complete" unbinds=1]
-[connection signal="brake_ended" from="input_brake" to="hud_canvas/hud/tutorials/brake" method="complete"]
 [connection signal="reloaded" from="hud_canvas/hud/ammo_offset/ammo" to="head/weapon_socket/shotgun/bullet_spawn_location/reload_audio" method="play"]
 
 [editable path="head/weapon_socket/shotgun"]

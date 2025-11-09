@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://c17kh0ypm64l5"]
+
+[ext_resource type="PackedScene" uid="uid://dda2t108siejm" path="res://spowder/scenes/levels/level_base.tscn" id="1_nuo3e"]
+[ext_resource type="PackedScene" uid="uid://bls7xpnlx6jvq" path="res://spowder/scenes/pickup/cheese/pickup_cheese.tscn" id="2_3hgfg"]
+[ext_resource type="Material" uid="uid://cl4v48g2sin5f" path="res://spowder/scenes/platforms/platform.tres" id="2_e7nxb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3hgfg"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_e7nxb"]
+sky_material = SubResource("ProceduralSkyMaterial_3hgfg")
+
+[sub_resource type="Environment" id="Environment_i4wya"]
+background_mode = 2
+sky = SubResource("Sky_e7nxb")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nuo3e"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nuo3e"]
+size = Vector3(15, 1, 15)
+
+[node name="level_00" instance=ExtResource("1_nuo3e")]
+next_level = "uid://looen57m2fpf"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_i4wya")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="static_body_3d" type="StaticBody3D" parent="." index="5"]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="static_body_3d" index="0"]
+shape = SubResource("BoxShape3D_nuo3e")
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="static_body_3d" index="1"]
+material_override = ExtResource("2_e7nxb")
+mesh = SubResource("BoxMesh_nuo3e")
+
+[node name="static_body_3d_2" type="StaticBody3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="static_body_3d_2" index="0"]
+shape = SubResource("BoxShape3D_nuo3e")
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="static_body_3d_2" index="1"]
+material_override = ExtResource("2_e7nxb")
+mesh = SubResource("BoxMesh_nuo3e")
+
+[node name="pickup_cheese" parent="static_body_3d_2" index="2" instance=ExtResource("2_3hgfg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0005565, 6.0087204, -0.0010242462)

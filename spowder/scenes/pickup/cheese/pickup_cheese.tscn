@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bls7xpnlx6jvq"]
+
+[ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_olfr6"]
+[ext_resource type="PackedScene" uid="uid://bn8p18rfpaj8i" path="res://spowder/scenes/pickup/cheese/Cheese.blend" id="2_6xwic"]
+[ext_resource type="Material" uid="uid://cnt2yrukvndcv" path="res://spowder/scenes/pickup/cheese/cheese_material.tres" id="3_h7rak"]
+
+[node name="pickup_cheese" instance=ExtResource("1_olfr6")]
+
+[node name="Cheese" parent="visuals/root" index="1" instance=ExtResource("2_6xwic")]
+transform = Transform3D(5, 0, 0, 0, 3.535534, -3.535534, 0, 3.535534, 3.535534, 0, 0, 0)
+
+[node name="Cylinder" parent="visuals/root/Cheese" index="0"]
+material_override = ExtResource("3_h7rak")
+
+[editable path="visuals/root/Cheese"]

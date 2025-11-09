@@ -19,7 +19,6 @@ shader_parameter/emissive = Color(0, 0.5, 1, 1)
 shader_parameter/ao_scale = 1.0
 shader_parameter/rough_scale = 1.0
 shader_parameter/metal_scale = 0.0
-shader_parameter/scale = 0.1
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_flhv8"]
 material = SubResource("ShaderMaterial_a3voe")
@@ -113,7 +112,7 @@ _data = {
 &"spinny": SubResource("Animation_flhv8")
 }
 
-[node name="pickup" type="Area3D"]
+[node name="pickup" type="Area3D" groups=["pickup"]]
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_flhv8")
@@ -140,6 +139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="beacon" type="MeshInstance3D" parent="visuals/root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_flhv8")
 
 [node name="animation_player" type="AnimationPlayer" parent="visuals"]

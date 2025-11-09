@@ -14,6 +14,12 @@ enum {
 
 static var inst : Music
 
+static func ensure_progress(idx: int) -> void:
+	if inst == null: return
+
+	if inst.progress >= idx: return
+	inst.clip_index = idx
+
 @export var character : CharacterBody3D
 
 var playback : AudioStreamPlaybackInteractive
@@ -62,14 +68,3 @@ func _process(delta: float) -> void:
 		clip_index = 0 if character.velocity.length() < rest_speed and character.is_on_floor() else progress
 	else:
 		pass
-
-func ensure_progress(idx: int) -> void:
-	if progress >= idx: return
-	clip_index = idx
-
-	# match progress:
-	# 	COIL_PICKUP_TRANSITION:
-	# 		progress = COIL_PICKUP_ACQUIRED
-
-
-

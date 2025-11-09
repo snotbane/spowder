@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cnt2yrukvndcv"]
+
+[ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="1_icwqk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_icwqk")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/color = Color(1, 0.8845, 0.37, 1)
+shader_parameter/emissive = Color(0, 0, 0, 1)
+shader_parameter/ao_scale = 1.0
+shader_parameter/rough_scale = 1.0
+shader_parameter/metal_scale = 1.0
+shader_parameter/scale = 0.1

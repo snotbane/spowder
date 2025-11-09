@@ -1,0 +1,173 @@
+[gd_scene load_steps=15 format=3 uid="uid://dda2t108siejm"]
+
+[ext_resource type="Script" uid="uid://0pp2t8rf4fs5" path="res://spowder/scenes/levels/Level.gd" id="1_0awj5"]
+[ext_resource type="Script" uid="uid://cg7rqcilp6dkr" path="res://spowder/scripts/Message.gd" id="2_5kvtb"]
+[ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="2_utlox"]
+[ext_resource type="PackedScene" uid="uid://cx1g3fipburm0" path="res://spowder/scenes/you/you.tscn" id="2_yip71"]
+[ext_resource type="Script" uid="uid://cg1nbb7rg7dls" path="res://spowder/scripts/MessageStack.gd" id="3_utlox"]
+[ext_resource type="PackedScene" uid="uid://cshriq78sag88" path="res://spowder/scenes/pickup/question/pickup_question.tscn" id="6_afkni"]
+
+[sub_resource type="GDScript" id="GDScript_afkni"]
+resource_name = "JitterLevelController"
+script/source = "extends ShaderGlobalsOverride
+
+@onready var anim_player : AnimationPlayer = $animation_player
+
+@export_range(0.0, 1.0, 0.01, \"or_greater\", \"or_less\") var jitter_scale : float = 0.1 :
+	get: return RenderingServer.global_shader_parameter_get(&\"jitter_scale\")
+	set(value): RenderingServer.global_shader_parameter_set_override(&\"jitter_scale\", value)
+
+
+func _ready() -> void:
+	anim_player.play(&\"fade_in\")
+"
+
+[sub_resource type="Animation" id="Animation_utlox"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:jitter_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [10.0, 0.1]
+}
+
+[sub_resource type="Animation" id="Animation_afkni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:jitter_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+
+[sub_resource type="Animation" id="Animation_ggs0r"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:jitter_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.1, 10.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_or_proceed"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_afkni"]
+_data = {
+&"RESET": SubResource("Animation_afkni"),
+&"fade_in": SubResource("Animation_utlox"),
+&"fade_out": SubResource("Animation_ggs0r")
+}
+
+[sub_resource type="GDScript" id="GDScript_utlox"]
+resource_name = "LevelResetWarningArea"
+script/source = "extends Area3D
+
+signal target_passed(outside: bool)
+
+@export var target : Node3D
+
+func _on_body_entered(body: Node3D) -> void:
+	if body != target: return
+	target_passed.emit(false)
+	
+func _on_body_exited(body: Node3D) -> void:
+	if body != target: return
+	target_passed.emit(true)
+"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_utlox"]
+plane = Plane(0, -1, 0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0awj5"]
+
+[node name="level" type="Node3D"]
+script = ExtResource("1_0awj5")
+
+[node name="jitter_controller" type="ShaderGlobalsOverride" parent="."]
+script = SubResource("GDScript_afkni")
+
+[node name="animation_player" type="AnimationPlayer" parent="jitter_controller"]
+libraries = {
+&"": SubResource("AnimationLibrary_afkni")
+}
+
+[node name="level_reset_warning_area" type="Area3D" parent="." node_paths=PackedStringArray("target")]
+monitorable = false
+script = SubResource("GDScript_utlox")
+target = NodePath("../you")
+
+[node name="fall_boundary" type="CollisionShape3D" parent="level_reset_warning_area"]
+shape = SubResource("WorldBoundaryShape3D_utlox")
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="control" type="Control" parent="canvas_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_utlox")
+
+[node name="message_stack" type="TabContainer" parent="canvas_layer/control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0awj5")
+current_tab = 0
+tabs_visible = false
+tab_focus_mode = 0
+script = ExtResource("3_utlox")
+
+[node name="level_reset_warning_message" type="Control" parent="canvas_layer/control/message_stack"]
+layout_mode = 2
+script = ExtResource("2_5kvtb")
+bbcode = "[shake level=11 rate=40 connected=0]"
+message = "Hold shOot To resEt"
+metadata/_tab_index = 0
+
+[node name="you" parent="." instance=ExtResource("2_yip71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="pickup_question" parent="." instance=ExtResource("6_afkni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+
+[connection signal="completed" from="." to="jitter_controller/animation_player" method="play" binds= [&"fade_out"]]
+[connection signal="body_entered" from="level_reset_warning_area" to="level_reset_warning_area" method="_on_body_entered"]
+[connection signal="body_exited" from="level_reset_warning_area" to="level_reset_warning_area" method="_on_body_exited"]
+[connection signal="target_passed" from="level_reset_warning_area" to="canvas_layer/control/message_stack/level_reset_warning_message" method="set_label_visible"]

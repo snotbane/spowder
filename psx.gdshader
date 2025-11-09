@@ -3,6 +3,7 @@ render_mode vertex_lighting, cull_disabled;
 
 #include "uid://b8tfxbpfli31i"
 
+
 uniform vec2 uv_scale = vec2(1);
 uniform vec4 color: source_color = vec4(1);
 uniform vec4 emissive: source_color = vec4(0,0,0,1);
@@ -13,10 +14,10 @@ uniform float ao_scale: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform float rough_scale: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform float metal_scale: hint_range(0.0, 1.0, 0.01) = 1.0;
 
-uniform float scale = 0.1;
+global uniform float jitter_scale;
 
 void vertex() {
-	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, scale);
+	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, jitter_scale);
 }
 
 void fragment() {

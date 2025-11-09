@@ -38,8 +38,10 @@ func _init() -> void:
 
 func _ready() -> void:
 	_source_camera = (EditorInterface.get_editor_viewport_3d() if Engine.is_editor_hint() else get_viewport()).get_camera_3d()
-	reflection_camera.environment = get_world_3d().environment.duplicate()
-	reflection_camera.environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
+
+	if get_world_3d().environment:
+		reflection_camera.environment = get_world_3d().environment.duplicate()
+		reflection_camera.environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
 
 	var material : ShaderMaterial = get_surface_override_material(push_material_index)
 	material.set_shader_parameter(&"reflection", viewport.get_texture())
