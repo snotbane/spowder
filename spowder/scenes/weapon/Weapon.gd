@@ -7,6 +7,7 @@ signal fired(global_impulse: Vector3)
 
 @export var bullet_uid : String
 @onready var bullet_scene : PackedScene = load(bullet_uid)
+@onready var barrel_multimesh : MultiMeshInstance3D = $multi_mesh_instance_3d
 
 @export var bullet_spawn_location : Node3D
 
@@ -15,6 +16,20 @@ signal fired(global_impulse: Vector3)
 
 @export var recoil_impulse_power := Vector2.ONE
 @export var bullet_impulse_power : float = 1.0
+
+var _barrel_count : int = 2
+@export var barrel_count : int = 2 :
+	get: return _barrel_count
+	set(value):
+		_barrel_count = value
+
+		if barrel_multimesh == null: return
+
+		barrel_multimesh.multimesh.instance_count = _barrel_count
+		for i in _barrel_count:
+			barrel_multimesh.multimesh.set_instance_transform(i, Transform3D(Basis.IDENTITY, Vector3.RIGHT * (float(i) - float(_barrel_count) / 2.0) * 0.2))
+func set_barrel_count(value: int) -> void:
+	barrel_count = value
 
 var owner_character : CharacterBody3D
 

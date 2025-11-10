@@ -185,6 +185,7 @@ mesh = SubResource("CylinderMesh_ym75q")
 [connection signal="slide_collided" from="." to="hud_canvas/hud/ammo_offset/ammo" method="_on_character_collided"]
 [connection signal="fired" from="head/weapon_socket/shotgun" to="." method="spowder_launch"]
 [connection signal="reloaded" from="hud_canvas/hud/ammo_offset/ammo" to="head/weapon_socket/shotgun/bullet_spawn_location/reload_audio" method="play"]
+[connection signal="shell_count_changed" from="hud_canvas/hud/ammo_offset/ammo" to="head/weapon_socket/shotgun" method="set_barrel_count"]
 [connection signal="pressed" from="menu_canvas/menu/v_box_container/resume" to="menu_canvas/menu/pause_controller" method="set_paused" binds= [false]]
 [connection signal="pressed" from="menu_canvas/menu/v_box_container/exit" to="menu_canvas/menu/pause_controller" method="exit_to_menu"]
 

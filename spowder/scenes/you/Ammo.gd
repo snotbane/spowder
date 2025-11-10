@@ -2,6 +2,7 @@
 class_name Ammo extends Control
 
 signal reloaded
+signal shell_count_changed(count: int)
 
 @export var shell_uid : String
 @onready var shell_scene : PackedScene = load(shell_uid)
@@ -22,6 +23,7 @@ var _shell_count : int = 1
 			get_child(-1).queue_free()
 
 		available_shells = shell_count
+		shell_count_changed.emit(_shell_count)
 
 @export var ignore_time : float = 0.1
 
