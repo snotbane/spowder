@@ -58,6 +58,8 @@ func _refresh_clip_index() -> void:
 
 func _init() -> void:
 	inst = self
+	stream = preload("res://spowder/audio/music/music.tres")
+	autoplay = true
 
 func _ready() -> void:
 	playback = get_stream_playback()

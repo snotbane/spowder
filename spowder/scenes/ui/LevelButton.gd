@@ -1,7 +1,9 @@
 
 @tool extends Message
 
-@export var level_scene : String
+func _ready() -> void:
+	visible = get_index() < LevelProgression.LEVEL_SCENES.size()
+	message = str(get_index() + 1)
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file(level_scene)
+	LevelProgression.inst.change_level(get_index())

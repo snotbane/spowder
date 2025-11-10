@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dda2t108siejm" path="res://spowder/scenes/levels/level_base.tscn" id="1_hlbg2"]
 [ext_resource type="Script" uid="uid://cg7rqcilp6dkr" path="res://spowder/scripts/Message.gd" id="2_yp88g"]
-[ext_resource type="PackedScene" uid="uid://b2mes4q1etu2o" path="res://spowder/scenes/levels/Level01.blend" id="3_hlbg2"]
+[ext_resource type="PackedScene" uid="uid://b2mes4q1etu2o" path="res://spowder/scenes/levels/LevelMostlyClosedBox.blend" id="3_hlbg2"]
 [ext_resource type="PackedScene" uid="uid://bls7xpnlx6jvq" path="res://spowder/scenes/pickup/cheese/pickup_cheese.tscn" id="3_yp88g"]
 [ext_resource type="Material" uid="uid://bafoh333amcoa" path="res://spowder/materials/concrete.tres" id="4_hlwvx"]
 

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cmqnlphtqjv4i"
-path="res://.godot/imported/Level02.blend-caf50f08372727a9035eeb6877a5c85f.scn"
+path="res://.godot/imported/LevelHallWithNoFloor.blend-2d0e8f633b8101d836bb97f3126cd905.scn"
 
 [deps]
 
-source_file="res://spowder/scenes/levels/Level02.blend"
-dest_files=["res://.godot/imported/Level02.blend-caf50f08372727a9035eeb6877a5c85f.scn"]
+source_file="res://spowder/scenes/levels/LevelHallWithNoFloor.blend"
+dest_files=["res://.godot/imported/LevelHallWithNoFloor.blend-2d0e8f633b8101d836bb97f3126cd905.scn"]
 
 [params]
 

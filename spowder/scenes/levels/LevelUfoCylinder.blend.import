@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b2mes4q1etu2o"
-path="res://.godot/imported/Level01.blend-8d6f59ebe40baf039b9844281849eaf4.scn"
+uid="uid://crwpahoeupjyk"
+path="res://.godot/imported/LevelUfoCylinder.blend-9e1034d053a5be698b6639f8e96c9ed1.scn"
 
 [deps]
 
-source_file="res://spowder/scenes/levels/Level01.blend"
-dest_files=["res://.godot/imported/Level01.blend-8d6f59ebe40baf039b9844281849eaf4.scn"]
+source_file="res://spowder/scenes/levels/LevelUfoCylinder.blend"
+dest_files=["res://.godot/imported/LevelUfoCylinder.blend-9e1034d053a5be698b6639f8e96c9ed1.scn"]
 
 [params]
 
@@ -37,15 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://spowder/materials/concrete.tres",
-"use_external/path": "uid://bafoh333amcoa"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

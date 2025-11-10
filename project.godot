@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 snotbane_debug_ghost="*res://addons/snotbane/modules/debug/ghost/DebugGhostAutoload.gd"
+LevelProgressionFarts="*res://spowder/scenes/levels/LevelProgression.gd"
+MusicINst="*res://spowder/scenes/Music.gd"
 
 [debug]
 

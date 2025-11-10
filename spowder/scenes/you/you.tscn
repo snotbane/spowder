@@ -71,7 +71,7 @@ damping = 0.05
 enabled = false
 
 [node name="input_reset" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 0.667
 script = ExtResource("8_ngbxx")
 
 [node name="hud_canvas" type="CanvasLayer" parent="."]

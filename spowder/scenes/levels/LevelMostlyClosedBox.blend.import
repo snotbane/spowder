@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8q7gvxgfrssk"
-path="res://.godot/imported/ShotgunBarrel.blend-afd55c60142d5b95bb3593571590a7b7.scn"
+uid="uid://b2mes4q1etu2o"
+path="res://.godot/imported/LevelMostlyClosedBox.blend-834e10dfa0018b82f6072f2b78bba05b.scn"
 
 [deps]
 
-source_file="res://spowder/scenes/weapon/ShotgunBarrel.blend"
-dest_files=["res://.godot/imported/ShotgunBarrel.blend-afd55c60142d5b95bb3593571590a7b7.scn"]
+source_file="res://spowder/scenes/levels/LevelMostlyClosedBox.blend"
+dest_files=["res://.godot/imported/LevelMostlyClosedBox.blend-834e10dfa0018b82f6072f2b78bba05b.scn"]
 
 [params]
 
@@ -38,15 +38,11 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
-"meshes": {
-"ShotgunBarrel_Cube": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://spowder/scenes/weapon/GunBarrel.res",
-"save_to_file/path": "uid://bcqmrb2ggqqex"
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://spowder/materials/concrete.tres",
+"use_external/path": "uid://bafoh333amcoa"
 }
 }
 }

@@ -116,6 +116,7 @@ _data = {
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_flhv8")
+required = false
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_xrd4m")

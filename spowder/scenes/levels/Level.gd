@@ -4,9 +4,6 @@ static var inst : Level
 
 signal completed
 
-@export var next_level : String
-@export var level_index : int = 0
-
 var is_completed : bool
 
 var required_pickup_count : int :
@@ -25,7 +22,6 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	LevelProgression.unlock_up_to(level_index)
 	is_completed = false
 
 	for pickup: Node in get_tree().get_nodes_in_group(&"pickup"):
@@ -51,7 +47,7 @@ func reset() -> void:
 	get_tree().change_scene_to_file(scene_file_path)
 
 func proceed() -> void:
-	get_tree().change_scene_to_file(next_level)
+	LevelProgression.inst.proceed_level()
 
 func reset_or_proceed() -> void:
 	if is_completed:

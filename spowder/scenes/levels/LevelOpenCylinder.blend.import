@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8q7gvxgfrssk"
-path="res://.godot/imported/ShotgunBarrel.blend-afd55c60142d5b95bb3593571590a7b7.scn"
+uid="uid://ddv3r0wu5gld3"
+path="res://.godot/imported/LevelOpenCylinder.blend-542724d94b84f60602c2857c485cca72.scn"
 
 [deps]
 
-source_file="res://spowder/scenes/weapon/ShotgunBarrel.blend"
-dest_files=["res://.godot/imported/ShotgunBarrel.blend-afd55c60142d5b95bb3593571590a7b7.scn"]
+source_file="res://spowder/scenes/levels/LevelOpenCylinder.blend"
+dest_files=["res://.godot/imported/LevelOpenCylinder.blend-542724d94b84f60602c2857c485cca72.scn"]
 
 [params]
 
@@ -37,19 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"meshes": {
-"ShotgunBarrel_Cube": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://spowder/scenes/weapon/GunBarrel.res",
-"save_to_file/path": "uid://bcqmrb2ggqqex"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
