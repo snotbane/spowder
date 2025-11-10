@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode vertex_lighting, cull_disabled;
+render_mode vertex_lighting, cull_disabled, shadows_disabled;
 
 #include "uid://b8tfxbpfli31i"
 
@@ -16,10 +16,12 @@ uniform float metal_scale: hint_range(0.0, 1.0, 0.01) = 1.0;
 
 global uniform float jitter_scale;
 global uniform float jitter_add;
+global uniform float jitter_pulse;
 
 void vertex() {
-	float dist = distance(CAMERA_POSITION_WORLD, VERTEX);
-	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, jitter_scale + jitter_add * dist);
+	//float dist = distance(CAMERA_POSITION_WORLD, (INV_PROJECTION_MATRIX * vec4(VERTEX, 1.0)).xyz);
+	float dist = length((MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz);
+	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, jitter_scale + (jitter_pulse + jitter_add) * dist);
 }
 
 void fragment() {

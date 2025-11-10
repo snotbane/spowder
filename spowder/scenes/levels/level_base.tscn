@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dda2t108siejm"]
+[gd_scene load_steps=25 format=3 uid="uid://dda2t108siejm"]
 
 [ext_resource type="Script" uid="uid://0pp2t8rf4fs5" path="res://spowder/scenes/levels/Level.gd" id="1_0awj5"]
 [ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="2_5g7fp"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cx1g3fipburm0" path="res://spowder/scenes/you/you.tscn" id="2_yip71"]
 [ext_resource type="Texture2D" uid="uid://dr7fp1qwghb7p" path="res://spowder/scenes/levels/qwantani_dusk_1_puresky_1k.exr" id="3_nsbt2"]
 [ext_resource type="Script" path="res://spowder/scripts/MessageStack.gd" id="3_utlox"]
+[ext_resource type="Script" uid="uid://bvnerwx0x15br" path="res://addons/snotbane/modules/attach/RescueAudioStreamPlayer.gd" id="4_3qxqr"]
+[ext_resource type="AudioStream" uid="uid://c6d382ntrtv6e" path="res://spowder/audio/spawn.ogg" id="4_nsbt2"]
 [ext_resource type="PackedScene" uid="uid://cshriq78sag88" path="res://spowder/scenes/pickup/question/pickup_question.tscn" id="6_afkni"]
+[ext_resource type="AudioStream" uid="uid://bju88ls6qffol" path="res://spowder/audio/die.ogg" id="6_vti77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_afkni"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -58,6 +61,9 @@ script/source = "extends ShaderGlobalsOverride
 
 func _ready() -> void:
 	anim_player.play(&\"fade_in\")
+	
+func _exit_tree() -> void:
+	jitter_add = 0.0
 "
 
 [sub_resource type="Animation" id="Animation_afkni"]
@@ -89,6 +95,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.5, 0.0]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("audio_stream_player")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_nsbt2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ggs0r"]
 resource_name = "fade_out"
@@ -118,6 +139,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, 0.5]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("audio_stream_player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_vti77")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_afkni"]
 _data = {
@@ -166,6 +202,10 @@ mesh = SubResource("SphereMesh_3qxqr")
 
 [node name="jitter_controller" type="ShaderGlobalsOverride" parent="."]
 script = SubResource("GDScript_afkni")
+
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="jitter_controller"]
+script = ExtResource("4_3qxqr")
+rescue_to_root = true
 
 [node name="animation_player" type="AnimationPlayer" parent="jitter_controller"]
 libraries = {

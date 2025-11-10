@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://de1wnph5txysj"]
+
+[ext_resource type="PackedScene" uid="uid://dda2t108siejm" path="res://spowder/scenes/levels/level_base.tscn" id="1_hn0y2"]
+[ext_resource type="PackedScene" uid="uid://cri4dgfnyuidg" path="res://spowder/scenes/levels/LevelTriRocket.blend" id="2_ft2o6"]
+[ext_resource type="Material" uid="uid://bafoh333amcoa" path="res://spowder/materials/concrete.tres" id="3_ugd7d"]
+[ext_resource type="PackedScene" uid="uid://bls7xpnlx6jvq" path="res://spowder/scenes/pickup/cheese/pickup_cheese.tscn" id="4_6burw"]
+[ext_resource type="PackedScene" uid="uid://bigoq5raprcrh" path="res://spowder/scenes/pickup/shell/pickup_shell.tscn" id="5_yfd7f"]
+
+[node name="level" instance=ExtResource("1_hn0y2")]
+
+[node name="LevelTriRocket" parent="." index="8" instance=ExtResource("2_ft2o6")]
+
+[node name="Cylinder" parent="LevelTriRocket" index="1"]
+material_override = ExtResource("3_ugd7d")
+
+[node name="pickup_cheese" parent="." index="9" instance=ExtResource("4_6burw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 92, 0)
+
+[node name="pickup_ammo_upgrade" parent="." index="10" instance=ExtResource("5_yfd7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, -100)
+
+[node name="pickup_ammo_upgrade_2" parent="." index="11" instance=ExtResource("5_yfd7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 31, 50)
+
+[node name="pickup_ammo_upgrade_3" parent="." index="12" instance=ExtResource("5_yfd7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87, 31, 50)
+
+[editable path="LevelTriRocket"]

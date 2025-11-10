@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cshriq78sag88"]
+[gd_scene load_steps=6 format=3 uid="uid://cshriq78sag88"]
 
 [ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_0tiql"]
 [ext_resource type="PackedScene" uid="uid://dxh8gtgo2o5gs" path="res://spowder/scenes/pickup/question/Question.blend" id="2_7bugq"]
+[ext_resource type="AudioStream" uid="uid://cfi075p7bufny" path="res://spowder/audio/shotgun_shell.tres" id="2_0400y"]
 [ext_resource type="Material" uid="uid://n6ect2gk6ui4" path="res://spowder/scenes/pickup/question/question_material.tres" id="3_0400y"]
 
 [sub_resource type="GDScript" id="GDScript_7bugq"]
@@ -16,7 +17,10 @@ func _collect_by(who: Node3D) -> void:
 [node name="pickup_question" instance=ExtResource("1_0tiql")]
 script = SubResource("GDScript_7bugq")
 destroy_on_collect = false
-required = false
+
+[node name="collect_audio" parent="." index="1"]
+stream = ExtResource("2_0400y")
+volume_db = -12.0
 
 [node name="beacon" parent="visuals/root" index="0"]
 visible = false

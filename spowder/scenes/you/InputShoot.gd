@@ -14,6 +14,6 @@ func _input(event: InputEvent) -> void:
 func try_shoot() -> void:
 	if ammo.available_shells > 0:
 		ammo.available_shells -= 1
-		weapon.fire()
+		weapon.fire(ammo.available_shells == 0)
 	else:
-		pass
+		weapon.misfire()

@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7mr0xn6bkp"]
+[gd_scene load_steps=11 format=3 uid="uid://b7mr0xn6bkp"]
 
 [ext_resource type="Script" uid="uid://q6vvkj8wm2b4" path="res://spowder/scenes/weapon/Weapon.gd" id="1_thdur"]
+[ext_resource type="AudioStream" uid="uid://cttx58brsdpyq" path="res://spowder/audio/shotgun_empty.ogg" id="3_8muey"]
 [ext_resource type="AudioStream" uid="uid://hkmrkdy0puto" path="res://spowder/audio/shotgun_fire.tres" id="3_m1o2b"]
+[ext_resource type="AudioStream" uid="uid://dn10y452sacqt" path="res://spowder/audio/garand_ping_01.ogg" id="3_nqixq"]
 [ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="4_i6gp1"]
-[ext_resource type="ArrayMesh" uid="uid://k3b7ps0k6exn" path="res://spowder/scenes/weapon/GunBarrel.res" id="4_nahqp"]
+[ext_resource type="ArrayMesh" uid="uid://bcqmrb2ggqqex" path="res://spowder/scenes/weapon/GunBarrel.res" id="4_nahqp"]
 [ext_resource type="AudioStream" uid="uid://cxgyc504pcyjg" path="res://spowder/audio/shotgun_reload.tres" id="4_o0mbr"]
 [ext_resource type="Texture2D" uid="uid://h772lgx55gpg" path="res://spowder/scenes/weapon/ShotgunBarrel_3-inch-304-grade-stainless-steel-round-pipe-3198284033.jpg" id="5_8muey"]
 
@@ -38,6 +40,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.50113046)
 
 [node name="fire_audio" type="AudioStreamPlayer3D" parent="bullet_spawn_location"]
 stream = ExtResource("3_m1o2b")
+max_polyphony = 4
+bus = &"Effects"
+
+[node name="out_of_ammo_audio" type="AudioStreamPlayer3D" parent="bullet_spawn_location"]
+stream = ExtResource("3_nqixq")
+max_polyphony = 4
+bus = &"Effects"
+
+[node name="misfire_audio" type="AudioStreamPlayer3D" parent="bullet_spawn_location"]
+stream = ExtResource("3_8muey")
 bus = &"Effects"
 
 [node name="reload_audio" type="AudioStreamPlayer3D" parent="bullet_spawn_location"]
@@ -49,3 +61,4 @@ material_override = SubResource("ShaderMaterial_nqixq")
 multimesh = SubResource("MultiMesh_i6gp1")
 
 [connection signal="fired" from="." to="bullet_spawn_location/fire_audio" method="play" unbinds=1]
+[connection signal="misfired" from="." to="bullet_spawn_location/misfire_audio" method="play"]

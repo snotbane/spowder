@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://x13buphg5mu0"]
+
+[ext_resource type="PackedScene" uid="uid://dda2t108siejm" path="res://spowder/scenes/levels/level_base.tscn" id="1_rkl6f"]
+[ext_resource type="PackedScene" uid="uid://bigoq5raprcrh" path="res://spowder/scenes/pickup/shell/pickup_shell.tscn" id="2_1d203"]
+[ext_resource type="PackedScene" uid="uid://bls7xpnlx6jvq" path="res://spowder/scenes/pickup/cheese/pickup_cheese.tscn" id="2_dg0lu"]
+[ext_resource type="PackedScene" uid="uid://bjkcobkoxjryo" path="res://spowder/scenes/levels/LevelRailgun.blend" id="3_dg0lu"]
+[ext_resource type="Material" uid="uid://bafoh333amcoa" path="res://spowder/materials/concrete.tres" id="4_u2n81"]
+
+[node name="level" instance=ExtResource("1_rkl6f")]
+
+[node name="control" parent="canvas_layer" index="0"]
+visible = false
+
+[node name="pickup_cheese" parent="." index="7" instance=ExtResource("2_dg0lu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.173626, -114.05645, 3110.9563)
+
+[node name="pickup_ammo_upgrade" parent="." index="9" instance=ExtResource("2_1d203")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 16)
+
+[node name="pickup_ammo_upgrade_2" parent="." index="10" instance=ExtResource("2_1d203")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 48)
+
+[node name="pickup_ammo_upgrade_3" parent="." index="11" instance=ExtResource("2_1d203")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 83)
+
+[node name="pickup_ammo_upgrade_4" parent="." index="12" instance=ExtResource("2_1d203")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 120)
+
+[node name="pickup_ammo_upgrade_5" parent="." index="13" instance=ExtResource("2_1d203")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 160)
+
+[node name="pickup_ammo_upgrade_6" parent="." index="14" instance=ExtResource("2_1d203")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 197)
+
+[node name="LevelRailgun" parent="." index="15" instance=ExtResource("3_dg0lu")]
+
+[node name="Cube" parent="LevelRailgun" index="0"]
+material_override = ExtResource("4_u2n81")
+
+[node name="Cylinder" parent="LevelRailgun" index="3"]
+material_override = ExtResource("4_u2n81")
+
+[editable path="LevelRailgun"]

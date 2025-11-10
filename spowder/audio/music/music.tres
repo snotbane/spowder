@@ -1,16 +1,15 @@
-[gd_resource type="AudioStreamInteractive" load_steps=9 format=3 uid="uid://m0ol3g7u6my2"]
+[gd_resource type="AudioStreamInteractive" load_steps=8 format=3 uid="uid://m0ol3g7u6my2"]
 
 [ext_resource type="AudioStream" uid="uid://ok4qe3dcrd5b" path="res://spowder/audio/music/cheese_00.ogg" id="1_86oar"]
 [ext_resource type="AudioStream" uid="uid://c1qwjsxu7igmj" path="res://spowder/audio/music/cheese_01.ogg" id="2_40pkm"]
 [ext_resource type="AudioStream" uid="uid://cik7327q118px" path="res://spowder/audio/music/cheese_02.ogg" id="3_0ex05"]
 [ext_resource type="AudioStream" uid="uid://d28gs0oedgoyj" path="res://spowder/audio/music/cheese_03.ogg" id="4_ynvrs"]
 [ext_resource type="AudioStream" uid="uid://bpfq4v1xtcx48" path="res://spowder/audio/music/cheese_04.ogg" id="5_xfqs6"]
-[ext_resource type="AudioStream" uid="uid://b4g317madu6hi" path="res://spowder/audio/music/cheese_05.ogg" id="6_i8hvl"]
 [ext_resource type="AudioStream" uid="uid://ci8myxbsipw07" path="res://spowder/audio/music/cheese_06.ogg" id="7_ini22"]
 [ext_resource type="AudioStream" uid="uid://i710l6aefe0t" path="res://spowder/audio/music/cheese_07.ogg" id="8_1mkfd"]
 
 [resource]
-clip_count = 8
+clip_count = 7
 clip_0/name = &"rest"
 clip_0/stream = ExtResource("1_86oar")
 clip_0/auto_advance = 0
@@ -20,33 +19,23 @@ clip_1/auto_advance = 0
 clip_2/name = &"walk"
 clip_2/stream = ExtResource("3_0ex05")
 clip_2/auto_advance = 0
-clip_3/name = &"walk_2"
+clip_3/name = &"jog_shiny"
 clip_3/stream = ExtResource("4_ynvrs")
 clip_3/auto_advance = 0
 clip_4/name = &"jog"
 clip_4/stream = ExtResource("5_xfqs6")
 clip_4/auto_advance = 0
-clip_5/name = &"jog_shiny"
-clip_5/stream = ExtResource("6_i8hvl")
+clip_5/name = &"duck"
+clip_5/stream = ExtResource("7_ini22")
 clip_5/auto_advance = 0
-clip_6/name = &"duck"
-clip_6/stream = ExtResource("7_ini22")
-clip_6/auto_advance = 1
-clip_6/next_clip = 7
-clip_7/name = &"sprint"
-clip_7/stream = ExtResource("8_1mkfd")
-clip_7/auto_advance = 0
+clip_6/name = &"sprint"
+clip_6/stream = ExtResource("8_1mkfd")
+clip_6/auto_advance = 0
 _transitions = {
 Vector2i(-1, -1): {
 "fade_beats": 0.0,
 "fade_mode": 4,
 "from_time": 2,
-"to_time": 1
-},
-Vector2i(-1, 7): {
-"fade_beats": 0.0,
-"fade_mode": 0,
-"from_time": 3,
 "to_time": 1
 }
 }

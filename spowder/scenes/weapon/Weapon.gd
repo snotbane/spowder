@@ -2,6 +2,7 @@
 class_name Weapon extends Node3D
 
 signal fired(global_impulse: Vector3)
+signal misfired
 
 @export var bullets_fired : int = 1
 
@@ -39,12 +40,17 @@ var character_velocity : Vector3 :
 func _ready() -> void:
 	owner_character = Snotbane.find_parent_of_type(self, "CharacterBody3D")
 
-func fire() -> void:
+func fire(last: bool = false) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	for i in bullets_fired:
 		create_bullet()
+	if last: $bullet_spawn_location/out_of_ammo_audio.play()
 
 	fired.emit(global_basis.z * Snotbane.expanded(recoil_impulse_power))
 	# Music.ensure_progress(Music.WEAPON_FIRED)
+
+func misfire() -> void:
+	misfired.emit()
 
 
 func create_bullet() -> Bullet:

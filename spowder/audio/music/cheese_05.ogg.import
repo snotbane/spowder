@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/cheese_05.ogg-a8f8a4ae864bb104f1c0f1d852ad048
 [params]
 
 loop=true
-loop_offset=9.83
+loop_offset=9.85
 bpm=195.0
 beat_count=0
-bar_beats=4
+bar_beats=16

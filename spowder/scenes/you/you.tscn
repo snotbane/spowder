@@ -54,6 +54,9 @@ ammo = NodePath("../../hud_canvas/hud/ammo_offset/ammo")
 [node name="shotgun" parent="head/weapon_socket" instance=ExtResource("3_6ftwj")]
 recoil_impulse_power = Vector2(16, 12)
 
+[node name="out_of_ammo_audio" parent="head/weapon_socket/shotgun/bullet_spawn_location" index="1"]
+volume_db = -80.0
+
 [node name="mirror" parent="head" instance=ExtResource("5_dylk3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6466253, -0.11925948, -0.83808327)
 visible = false
@@ -84,7 +87,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme = ExtResource("8_2x3ne")
 
 [node name="ammo_offset" type="Control" parent="hud_canvas/hud"]

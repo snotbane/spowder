@@ -7,6 +7,10 @@ static var LEVEL_SCENES : Array[PackedScene] = [
 	load("res://spowder/scenes/levels/level_open_cylinder.tscn"),
 	load("res://spowder/scenes/levels/level_hall_with_no_floor.tscn"),
 	load("res://spowder/scenes/levels/level_ufo_cylinder.tscn"),
+	load("res://spowder/scenes/levels/level_railgun.tscn"),
+	load("res://spowder/scenes/levels/level_tri_rocket.tscn"),
+	# load("res://spowder/scenes/levels/level_mostly_closed_box.tscn"),
+	# load("res://spowder/scenes/levels/level_mostly_closed_box.tscn"),
 ]
 
 static var inst : LevelProgression
@@ -34,8 +38,8 @@ func _init() -> void:
 
 func change_level(idx: int = -1) -> void:
 	current_level = idx
-	Music.inst.clip_index = current_level
-	levels_unlocked = maxi(levels_unlocked, current_level)
+	Music.inst.clip_index = current_level + 1
+	levels_unlocked = maxi(levels_unlocked, current_level + 1)
 	if current_level < 0 or current_level >= LEVEL_SCENES.size():
 		get_tree().change_scene_to_file("res://spowder/scenes/levels/main_menu.tscn")
 	else:

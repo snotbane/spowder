@@ -127,10 +127,11 @@ color = Color(1, 1, 1, 0.21960784)
 debug_visibility = 1
 metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
 
-[node name="collect_audio" type="AudioStreamPlayer3D" parent="."]
+[node name="collect_audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_flhv8")
 bus = &"Effects"
 script = ExtResource("3_a3voe")
+rescue_to_root = true
 
 [node name="visuals" type="Node3D" parent="."]
 
