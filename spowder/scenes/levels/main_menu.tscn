@@ -1,0 +1,218 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmb0oadsxhycs"]
+
+[ext_resource type="Script" uid="uid://cg7rqcilp6dkr" path="res://spowder/scripts/Message.gd" id="1_2oxse"]
+[ext_resource type="Shader" uid="uid://cph2s7themw8b" path="res://psx.gdshader" id="1_5goqi"]
+[ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="1_x76qb"]
+[ext_resource type="Texture2D" uid="uid://dr7fp1qwghb7p" path="res://spowder/scenes/levels/qwantani_dusk_1_puresky_1k.exr" id="2_igqta"]
+[ext_resource type="PackedScene" uid="uid://pb1u04qg7j3w" path="res://spowder/scenes/ui/level_button.tscn" id="2_x76qb"]
+[ext_resource type="PackedScene" uid="uid://bls7xpnlx6jvq" path="res://spowder/scenes/pickup/cheese/pickup_cheese.tscn" id="3_igqta"]
+[ext_resource type="PackedScene" uid="uid://bigoq5raprcrh" path="res://spowder/scenes/pickup/shell/pickup_shell.tscn" id="4_db7xv"]
+
+[sub_resource type="GDScript" id="GDScript_g3to3"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().paused = false
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_afkni"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_2ko7v"]
+sky_material = SubResource("ProceduralSkyMaterial_afkni")
+
+[sub_resource type="Environment" id="Environment_ggs0r"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_2ko7v")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.25
+tonemap_mode = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wke5l"]
+render_priority = 0
+shader = ExtResource("1_5goqi")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/emissive = Color(0, 0, 0, 1)
+shader_parameter/albedo = ExtResource("2_igqta")
+shader_parameter/ao_scale = 1.0
+shader_parameter/rough_scale = 1.0
+shader_parameter/metal_scale = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_db7xv"]
+material = SubResource("ShaderMaterial_wke5l")
+radius = 2500.0
+height = 5000.0
+radial_segments = 8
+rings = 5
+
+[sub_resource type="GDScript" id="GDScript_2ko7v"]
+resource_name = "LevelUnlocker"
+script/source = "extends GridContainer
+
+func _ready() -> void:
+	for i in get_child_count():
+		get_child(i).disabled = i >= LevelProgression.levels_unlocked
+"
+
+[node name="main_menu" type="Node3D"]
+script = SubResource("GDScript_g3to3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ggs0r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_energy = 0.1
+shadow_enabled = true
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="skybox" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_db7xv")
+skeleton = NodePath("../WorldEnvironment")
+
+[node name="camera_3d" type="Camera3D" parent="."]
+
+[node name="decor" type="Node3D" parent="."]
+
+[node name="pickup_cheese" parent="decor" instance=ExtResource("3_igqta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.67, 4.55, -10.515)
+
+[node name="beacon" parent="decor/pickup_cheese/visuals/root" index="0"]
+visible = false
+
+[node name="pickup_ammo_upgrade" parent="decor" instance=ExtResource("4_db7xv")]
+transform = Transform3D(1.115, 0, 0, 0, 1.115, 0, 0, 0, 1.115, 5.8, 4.255, -10.45)
+
+[node name="beacon" parent="decor/pickup_ammo_upgrade/visuals/root" index="0"]
+visible = false
+
+[node name="pickup_ammo_upgrade_2" parent="decor" instance=ExtResource("4_db7xv")]
+transform = Transform3D(1.115, 0, 0, 0, 1.115, 0, 0, 0, 1.115, -6.62, -3.84, -10.45)
+
+[node name="beacon" parent="decor/pickup_ammo_upgrade_2/visuals/root" index="0"]
+visible = false
+
+[node name="pickup_cheese_4" parent="decor" instance=ExtResource("3_igqta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86, -3.54, -10.515)
+
+[node name="beacon" parent="decor/pickup_cheese_4/visuals/root" index="0"]
+visible = false
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="control" type="Control" parent="canvas_layer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x76qb")
+
+[node name="v_box_container" type="VBoxContainer" parent="canvas_layer/control"]
+custom_minimum_size = Vector2(175.145, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -69.0
+offset_right = 66.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="message_2" type="Control" parent="canvas_layer/control/v_box_container"]
+custom_minimum_size = Vector2(0, 26.385)
+layout_mode = 2
+script = ExtResource("1_2oxse")
+bbcode = "[font_size=24][shake level=21 rate=40 connected=0]"
+message = "swiss cheEse"
+label_visible = true
+metadata/_custom_type_script = "uid://cg7rqcilp6dkr"
+
+[node name="message_3" type="Control" parent="canvas_layer/control/v_box_container"]
+custom_minimum_size = Vector2(0, 16.665)
+layout_mode = 2
+script = ExtResource("1_2oxse")
+bbcode = "[font_size=12][shake level=9 rate=40 connected=0]"
+message = "a game by snotbane"
+label_visible = true
+metadata/_custom_type_script = "uid://cg7rqcilp6dkr"
+
+[node name="h_separator" type="HSeparator" parent="canvas_layer/control/v_box_container"]
+layout_mode = 2
+
+[node name="message" type="Control" parent="canvas_layer/control/v_box_container"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+script = ExtResource("1_2oxse")
+bbcode = "[shake level=11 rate=40 connected=0]"
+message = "Level select"
+label_visible = true
+metadata/_custom_type_script = "uid://cg7rqcilp6dkr"
+
+[node name="grid_container" type="GridContainer" parent="canvas_layer/control/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 4
+script = SubResource("GDScript_2ko7v")
+
+[node name="level_button" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+message = "1"
+
+[node name="level_button_2" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+message = "2"
+
+[node name="level_button_3" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+message = "3"
+
+[node name="level_button_4" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+layout_mode = 2
+disabled = true
+message = "4"
+
+[node name="level_button_5" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+visible = false
+layout_mode = 2
+disabled = true
+message = "5"
+
+[node name="exit" type="Button" parent="canvas_layer/control/v_box_container"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+script = ExtResource("1_2oxse")
+bbcode = "[shake level=11 rate=40 connected=0]"
+message = "exit game"
+label_visible = true
+
+[connection signal="pressed" from="canvas_layer/control/v_box_container/exit" to="." method="_on_exit_pressed"]
+
+[editable path="decor/pickup_cheese"]
+[editable path="decor/pickup_cheese/visuals/root/Cheese"]
+[editable path="decor/pickup_ammo_upgrade"]
+[editable path="decor/pickup_ammo_upgrade/visuals/root/Shell"]
+[editable path="decor/pickup_ammo_upgrade_2"]
+[editable path="decor/pickup_ammo_upgrade_2/visuals/root/Shell"]
+[editable path="decor/pickup_cheese_4"]
+[editable path="decor/pickup_cheese_4/visuals/root/Cheese"]

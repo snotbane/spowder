@@ -29,7 +29,7 @@ func fire() -> void:
 		create_bullet()
 
 	fired.emit(global_basis.z * Snotbane.expanded(recoil_impulse_power))
-	Music.ensure_progress(Music.WEAPON_FIRED)
+	# Music.ensure_progress(Music.WEAPON_FIRED)
 
 
 func create_bullet() -> Bullet:

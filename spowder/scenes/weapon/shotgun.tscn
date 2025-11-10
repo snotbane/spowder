@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7mr0xn6bkp"]
+[gd_scene load_steps=5 format=3 uid="uid://b7mr0xn6bkp"]
 
 [ext_resource type="Script" uid="uid://q6vvkj8wm2b4" path="res://spowder/scenes/weapon/Weapon.gd" id="1_thdur"]
-[ext_resource type="Material" uid="uid://cl4v48g2sin5f" path="res://spowder/scenes/platforms/platform.tres" id="2_qtog0"]
 [ext_resource type="AudioStream" uid="uid://hkmrkdy0puto" path="res://spowder/audio/shotgun_fire.tres" id="3_m1o2b"]
+[ext_resource type="PackedScene" uid="uid://8q7gvxgfrssk" path="res://spowder/scenes/weapon/ShotgunBarrel.blend" id="4_nahqp"]
 [ext_resource type="AudioStream" uid="uid://cxgyc504pcyjg" path="res://spowder/audio/shotgun_reload.tres" id="4_o0mbr"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_thdur"]
-size = Vector3(0.31, 0.1, 1)
 
 [node name="gun" type="Node3D" node_paths=PackedStringArray("bullet_spawn_location")]
 script = ExtResource("1_thdur")
@@ -16,10 +13,6 @@ bullet_spawn_location = NodePath("bullet_spawn_location")
 bullet_deviation_degrees = 30.0
 recoil_impulse_power = Vector2(10, 10)
 bullet_impulse_power = 70.0
-
-[node name="mesh_1st_person" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_thdur")
-surface_material_override/0 = ExtResource("2_qtog0")
 
 [node name="bullet_spawn_location" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.50113046)
@@ -31,5 +24,7 @@ bus = &"Effects"
 [node name="reload_audio" type="AudioStreamPlayer3D" parent="bullet_spawn_location"]
 stream = ExtResource("4_o0mbr")
 bus = &"Effects"
+
+[node name="ShotgunBarrel" parent="." instance=ExtResource("4_nahqp")]
 
 [connection signal="fired" from="." to="bullet_spawn_location/fire_audio" method="play" unbinds=1]

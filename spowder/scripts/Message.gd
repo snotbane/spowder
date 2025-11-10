@@ -36,6 +36,7 @@ func _init(__message__ := String(), __bbcode__ := "[shake level=11 rate=40 conne
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.set_anchors_preset(Control.LayoutPreset.PRESET_FULL_RECT)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child.call_deferred(label, false, INTERNAL_MODE_BACK)
 
 	message = __message__

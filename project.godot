@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="Spowder"
-run/main_scene="uid://c17kh0ypm64l5"
+run/main_scene="uid://cmb0oadsxhycs"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 snotbane_debug_ghost="*res://addons/snotbane/modules/debug/ghost/DebugGhostAutoload.gd"
+LevelProgressionFarts="*res://spowder/scenes/levels/LevelProgression.gd"
+MusicINst="*res://spowder/scenes/Music.gd"
 
 [debug]
 
@@ -186,4 +188,8 @@ renderer/rendering_method.mobile="gl_compatibility"
 jitter_scale={
 "type": "float",
 "value": 0.1
+}
+jitter_add={
+"type": "float",
+"value": 0.0
 }

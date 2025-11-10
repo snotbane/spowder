@@ -17,10 +17,15 @@ static var paused : bool :
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = _mouse_mode_prev
+func set_paused(value: bool) -> void:
+	paused = value
 
 @onready var menu : Control = get_parent()
 
-func _unhandled_input(event: InputEvent) -> void:
+@export var exit_scene : String
+
+func _input(event: InputEvent) -> void:
+	if not OS.is_debug_build(): return
 	if event.is_action_pressed(&"toggle_menu"):
 		PauseController.paused = not PauseController.paused
 
@@ -28,3 +33,7 @@ func _ready() -> void:
 	inst = self
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	menu.visible = PauseController.paused
+
+func exit_to_menu() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file(exit_scene)

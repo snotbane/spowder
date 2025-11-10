@@ -3,9 +3,6 @@ class_name Level extends Node3D
 static var inst : Level
 
 signal completed
-signal reset_requested
-
-@export var next_level : String
 
 var is_completed : bool
 
@@ -34,6 +31,7 @@ func _ready() -> void:
 		enemy.tree_exited.connect(_check_completion)
 
 
+
 func _check_completion() -> void:
 	if is_completed or not is_inside_tree(): return
 
@@ -49,7 +47,7 @@ func reset() -> void:
 	get_tree().change_scene_to_file(scene_file_path)
 
 func proceed() -> void:
-	get_tree().change_scene_to_file(next_level)
+	LevelProgression.inst.proceed_level()
 
 func reset_or_proceed() -> void:
 	if is_completed:

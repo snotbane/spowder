@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://wobw7sorl445"]
+
+[ext_resource type="Script" uid="uid://cg7rqcilp6dkr" path="res://spowder/scripts/Message.gd" id="1_km8ji"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x76qb"]
+
+[node name="button" type="Button"]
+custom_minimum_size = Vector2(24, 24)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x76qb")
+script = ExtResource("1_km8ji")
+bbcode = "[shake level=11 rate=40 connected=0]"
+label_visible = true

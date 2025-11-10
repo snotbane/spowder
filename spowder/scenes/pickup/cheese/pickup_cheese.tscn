@@ -5,6 +5,10 @@
 [ext_resource type="Material" uid="uid://cnt2yrukvndcv" path="res://spowder/scenes/pickup/cheese/cheese_material.tres" id="3_h7rak"]
 
 [node name="pickup_cheese" instance=ExtResource("1_olfr6")]
+required = true
+
+[node name="root" parent="visuals" index="0"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.4, 0)
 
 [node name="Cheese" parent="visuals/root" index="1" instance=ExtResource("2_6xwic")]
 transform = Transform3D(5, 0, 0, 0, 3.535534, -3.535534, 0, 3.535534, 3.535534, 0, 0, 0)

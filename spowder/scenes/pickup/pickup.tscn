@@ -116,15 +116,15 @@ _data = {
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_flhv8")
+required = false
 
 [node name="shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_xrd4m")
 
 [node name="debug_draw_3d_shape" type="Node3D" parent="shape"]
-visible = false
 script = ExtResource("2_a3voe")
 color = Color(1, 1, 1, 0.21960784)
-debug_visibility = 0
+debug_visibility = 1
 metadata/_custom_type_script = "uid://bdnjgdue6t5iy"
 
 [node name="collect_audio" type="AudioStreamPlayer3D" parent="."]

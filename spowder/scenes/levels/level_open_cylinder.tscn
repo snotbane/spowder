@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c68eu6oaa3210"]
+
+[ext_resource type="PackedScene" uid="uid://dda2t108siejm" path="res://spowder/scenes/levels/level_base.tscn" id="1_317om"]
+[ext_resource type="PackedScene" uid="uid://bls7xpnlx6jvq" path="res://spowder/scenes/pickup/cheese/pickup_cheese.tscn" id="2_f3b2r"]
+[ext_resource type="PackedScene" uid="uid://ddv3r0wu5gld3" path="res://spowder/scenes/levels/LevelOpenCylinder.blend" id="3_25j6m"]
+[ext_resource type="Material" uid="uid://bafoh333amcoa" path="res://spowder/materials/concrete.tres" id="5_le3so"]
+
+[node name="level" instance=ExtResource("1_317om")]
+level_index = 3
+
+[node name="pickup_cheese" parent="." index="8" instance=ExtResource("2_f3b2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5, -74)
+
+[node name="pickup_cheese_2" parent="." index="9" instance=ExtResource("2_f3b2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 5, -74)
+
+[node name="LevelOpenCylinder" parent="." index="10" instance=ExtResource("3_25j6m")]
+
+[node name="Cylinder" parent="LevelOpenCylinder" index="0"]
+material_override = ExtResource("5_le3so")
+
+[editable path="LevelOpenCylinder"]
