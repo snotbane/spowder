@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d32fdvcrcom8k"
-path.s3tc="res://.godot/imported/painted_plaster_wall_diff_1k.png-ecb02297a24d5074a2bbda21c5a5e81b.s3tc.ctex"
-path.etc2="res://.godot/imported/painted_plaster_wall_diff_1k.png-ecb02297a24d5074a2bbda21c5a5e81b.etc2.ctex"
+uid="uid://ciwgf05kqhnir"
+path.s3tc="res://.godot/imported/Shell_shotgun_shell_albedo.png-89f43ad475855390caf795fbae4578c7.s3tc.ctex"
+path.etc2="res://.godot/imported/Shell_shotgun_shell_albedo.png-89f43ad475855390caf795fbae4578c7.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "f3bb0e4c180bf318fda97a49eb4c034c"
+}
 
 [deps]
 
-source_file="res://spowder/textures/painted_plaster_wall_diff_1k.png"
-dest_files=["res://.godot/imported/painted_plaster_wall_diff_1k.png-ecb02297a24d5074a2bbda21c5a5e81b.s3tc.ctex", "res://.godot/imported/painted_plaster_wall_diff_1k.png-ecb02297a24d5074a2bbda21c5a5e81b.etc2.ctex"]
+source_file="res://spowder/scenes/pickup/shell/Shell_shotgun_shell_albedo.png"
+dest_files=["res://.godot/imported/Shell_shotgun_shell_albedo.png-89f43ad475855390caf795fbae4578c7.s3tc.ctex", "res://.godot/imported/Shell_shotgun_shell_albedo.png-89f43ad475855390caf795fbae4578c7.etc2.ctex"]
 
 [params]
 
@@ -38,5 +41,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=256
+process/size_limit=0
 detect_3d/compress_to=0

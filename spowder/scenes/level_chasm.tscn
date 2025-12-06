@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdr67u38poa3o"]
+[gd_scene load_steps=19 format=3 uid="uid://bdr67u38poa3o"]
 
 [ext_resource type="PackedScene" uid="uid://cx1g3fipburm0" path="res://spowder/scenes/you/you.tscn" id="1_7ff25"]
 [ext_resource type="AudioStream" uid="uid://m0ol3g7u6my2" path="res://spowder/audio/music/music.tres" id="1_duejx"]
@@ -8,8 +8,9 @@
 [ext_resource type="Script" uid="uid://dxvwmgywaldjj" path="res://spowder/scenes/Mirror.gd" id="5_p0xbw"]
 [ext_resource type="PackedScene" uid="uid://54k7gwf85glp" path="res://spowder/scenes/pickup/coil/pickup_coil.tscn" id="7_0hcto"]
 [ext_resource type="PackedScene" uid="uid://bigoq5raprcrh" path="res://spowder/scenes/pickup/shell/pickup_shell.tscn" id="8_0hcto"]
+[ext_resource type="PackedScene" uid="uid://xxv0vrqt3o3c" path="res://spowder/scenes/platforms/Chasm.glb" id="8_bicx8"]
 [ext_resource type="PackedScene" uid="uid://8ih8c2pj748w" path="res://spowder/scenes/pickup/chute/pickup_chute.tscn" id="8_duejx"]
-[ext_resource type="PackedScene" uid="uid://d2trgr3urlww1" path="res://spowder/scenes/platforms/chasm.tscn" id="9_duejx"]
+[ext_resource type="Material" uid="uid://bafoh333amcoa" path="res://spowder/materials/concrete.tres" id="9_yduse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ff25"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,25 +30,23 @@ tonemap_mode = 4
 material = ExtResource("4_fbfwr")
 size = Vector2(30, 20)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_exmhy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_sk5mu"]
 viewport_path = NodePath("mirror/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0hcto"]
 render_priority = 0
 shader = ExtResource("4_w3u3a")
-shader_parameter/reflection = SubResource("ViewportTexture_exmhy")
+shader_parameter/reflection = SubResource("ViewportTexture_sk5mu")
 shader_parameter/scale = 0.04
 
 [node name="world" type="Node3D"]
 
-[node name="music" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("character")]
+[node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_duejx")
 autoplay = true
 bus = &"Music"
 script = ExtResource("2_exmhy")
-character = NodePath("../you")
 clip = &"rest"
-rest_speed = 4.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xwyo7")
@@ -83,11 +82,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 46, 0)
 [node name="pickup_shell_3" parent="." instance=ExtResource("8_0hcto")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 24, 64)
 
-[node name="Chasm" parent="." instance=ExtResource("9_duejx")]
+[node name="Chasm_2" parent="." instance=ExtResource("8_bicx8")]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="Cylinder" parent="Chasm_2" index="0"]
+surface_material_override/0 = ExtResource("9_yduse")
 
 [node name="pickup_chute" parent="." instance=ExtResource("8_duejx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.45584, 44.333633, 0.96887827)
 
 [node name="pickup_coil" parent="." instance=ExtResource("7_0hcto")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25376225, 48.765213, -0.19998646)
+
+[editable path="Chasm_2"]

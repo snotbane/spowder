@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2tf7vese1750"
 path.s3tc="res://.godot/imported/cheese_a.png-74cf53f0f26c0c38050a8f553cb9f56a.s3tc.ctex"
+path.etc2="res://.godot/imported/cheese_a.png-74cf53f0f26c0c38050a8f553cb9f56a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://spowder/scenes/pickup/cheese/cheese_a.png"
-dest_files=["res://.godot/imported/cheese_a.png-74cf53f0f26c0c38050a8f553cb9f56a.s3tc.ctex"]
+dest_files=["res://.godot/imported/cheese_a.png-74cf53f0f26c0c38050a8f553cb9f56a.s3tc.ctex", "res://.godot/imported/cheese_a.png-74cf53f0f26c0c38050a8f553cb9f56a.etc2.ctex"]
 
 [params]
 

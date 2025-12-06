@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://h772lgx55gpg"
 path.s3tc="res://.godot/imported/ShotgunBarrel_3-inch-304-grade-stainless-steel-round-pipe-3198284033.jpg-6808642d515142bc15455a4d67613c29.s3tc.ctex"
+path.etc2="res://.godot/imported/ShotgunBarrel_3-inch-304-grade-stainless-steel-round-pipe-3198284033.jpg-6808642d515142bc15455a4d67613c29.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://spowder/scenes/weapon/ShotgunBarrel_3-inch-304-grade-stainless-steel-round-pipe-3198284033.jpg"
-dest_files=["res://.godot/imported/ShotgunBarrel_3-inch-304-grade-stainless-steel-round-pipe-3198284033.jpg-6808642d515142bc15455a4d67613c29.s3tc.ctex"]
+dest_files=["res://.godot/imported/ShotgunBarrel_3-inch-304-grade-stainless-steel-round-pipe-3198284033.jpg-6808642d515142bc15455a4d67613c29.s3tc.ctex", "res://.godot/imported/ShotgunBarrel_3-inch-304-grade-stainless-steel-round-pipe-3198284033.jpg-6808642d515142bc15455a4d67613c29.etc2.ctex"]
 
 [params]
 

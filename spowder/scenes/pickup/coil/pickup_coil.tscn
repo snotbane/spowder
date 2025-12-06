@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://54k7gwf85glp"]
 
 [ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_d7l0e"]
-[ext_resource type="PackedScene" uid="uid://cbslm6hp3nw7d" path="res://spowder/scenes/pickup/coil/Coil.blend" id="2_2oecj"]
+[ext_resource type="PackedScene" uid="uid://7edfx3hel1qv" path="res://spowder/scenes/pickup/coil/Coil.glb" id="2_2oecj"]
 [ext_resource type="Material" uid="uid://b5qvb8uirbiwo" path="res://spowder/scenes/pickup/coil/coil_material.tres" id="3_2oecj"]
 
 [sub_resource type="GDScript" id="GDScript_s511d"]
@@ -23,9 +23,9 @@ bounce_factor = Vector2(0.975, 0.7)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 101.75, 0)
 
 [node name="Coil" parent="visuals/root" index="1" instance=ExtResource("2_2oecj")]
-transform = Transform3D(0.5161885, 0.9958788, 0.9958788, 0, 1.0606601, -1.0606601, -1.4083854, 0.36500037, 0.36500037, 0, -0.24741025, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.0606601, -1.0606601, 0, 1.0606601, 1.0606601, 0, 0, 0)
 
 [node name="Cylinder_001" parent="visuals/root/Coil" index="0"]
-material_override = ExtResource("3_2oecj")
+surface_material_override/0 = ExtResource("3_2oecj")
 
 [editable path="visuals/root/Coil"]

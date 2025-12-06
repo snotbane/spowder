@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://djwb2hx8pdggv" path="res://spowder/scenes/pickup/pickup.tscn" id="1_vs5e1"]
 [ext_resource type="AudioStream" uid="uid://cbivihskflv3f" path="res://spowder/audio/weapon_pickup.ogg" id="2_2eyx4"]
-[ext_resource type="PackedScene" uid="uid://bd036iwnji2qp" path="res://spowder/scenes/pickup/shell/Shell.blend" id="2_x7ks0"]
-[ext_resource type="Material" uid="uid://4olkqj6hk2ei" path="res://spowder/scenes/pickup/shell/shell_material.tres" id="3_ao56b"]
+[ext_resource type="PackedScene" uid="uid://c0w1badp0phv5" path="res://spowder/scenes/pickup/shell/Shell.glb" id="3_ao56b"]
+[ext_resource type="Material" uid="uid://4olkqj6hk2ei" path="res://spowder/scenes/pickup/shell/shell_material.tres" id="4_2eyx4"]
 
 [sub_resource type="GDScript" id="GDScript_vs5e1"]
 resource_name = "PickupAmmoUpgrade"
@@ -20,9 +20,9 @@ script = SubResource("GDScript_vs5e1")
 [node name="collect_audio" parent="." index="1"]
 stream = ExtResource("2_2eyx4")
 
-[node name="Shell" parent="visuals/root" index="1" instance=ExtResource("2_x7ks0")]
+[node name="Shell" parent="visuals/root" index="1" instance=ExtResource("3_ao56b")]
 
 [node name="Cylinder" parent="visuals/root/Shell" index="0"]
-material_override = ExtResource("3_ao56b")
+surface_material_override/0 = ExtResource("4_2eyx4")
 
 [editable path="visuals/root/Shell"]

@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Spowder"
+config/name="SWISS CHEESE"
+config/version="1.0.1"
 run/main_scene="uid://cmb0oadsxhycs"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -51,6 +52,10 @@ folder_colors={
 "res://spowder/scenes/": "green",
 "res://spowder/textures/": "red"
 }
+
+[filesystem]
+
+import/blender/enabled=false
 
 [global_group]
 
@@ -181,6 +186,7 @@ brake={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 
 [shader_globals]
 

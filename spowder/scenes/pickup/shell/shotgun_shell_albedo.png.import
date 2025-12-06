@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpcmkheqee2vw"
 path.s3tc="res://.godot/imported/shotgun_shell_albedo.png-cd64c2458852a3e88e855dc1ff70c8c7.s3tc.ctex"
+path.etc2="res://.godot/imported/shotgun_shell_albedo.png-cd64c2458852a3e88e855dc1ff70c8c7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://spowder/scenes/pickup/shell/shotgun_shell_albedo.png"
-dest_files=["res://.godot/imported/shotgun_shell_albedo.png-cd64c2458852a3e88e855dc1ff70c8c7.s3tc.ctex"]
+dest_files=["res://.godot/imported/shotgun_shell_albedo.png-cd64c2458852a3e88e855dc1ff70c8c7.s3tc.ctex", "res://.godot/imported/shotgun_shell_albedo.png-cd64c2458852a3e88e855dc1ff70c8c7.etc2.ctex"]
 
 [params]
 

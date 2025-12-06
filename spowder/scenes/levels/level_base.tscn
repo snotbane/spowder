@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://02b87o8f1c0l" path="res://default.tres" id="2_utlox"]
 [ext_resource type="PackedScene" uid="uid://cx1g3fipburm0" path="res://spowder/scenes/you/you.tscn" id="2_yip71"]
 [ext_resource type="Texture2D" uid="uid://dr7fp1qwghb7p" path="res://spowder/scenes/levels/qwantani_dusk_1_puresky_1k.exr" id="3_nsbt2"]
-[ext_resource type="Script" path="res://spowder/scripts/MessageStack.gd" id="3_utlox"]
+[ext_resource type="Script" uid="uid://cg1nbb7rg7dls" path="res://spowder/scripts/MessageStack.gd" id="3_utlox"]
 [ext_resource type="Script" uid="uid://bvnerwx0x15br" path="res://addons/snotbane/modules/attach/RescueAudioStreamPlayer.gd" id="4_3qxqr"]
 [ext_resource type="AudioStream" uid="uid://c6d382ntrtv6e" path="res://spowder/audio/spawn.ogg" id="4_nsbt2"]
 [ext_resource type="PackedScene" uid="uid://cshriq78sag88" path="res://spowder/scenes/pickup/question/pickup_question.tscn" id="6_afkni"]
