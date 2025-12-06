@@ -4,13 +4,12 @@
 [ext_resource type="Script" uid="uid://cg7rqcilp6dkr" path="res://spowder/scripts/Message.gd" id="2_yp88g"]
 [ext_resource type="PackedScene" uid="uid://bls7xpnlx6jvq" path="res://spowder/scenes/pickup/cheese/pickup_cheese.tscn" id="3_yp88g"]
 [ext_resource type="Material" uid="uid://bafoh333amcoa" path="res://spowder/materials/concrete.tres" id="4_hlwvx"]
+[ext_resource type="PackedScene" uid="uid://dlknw0820xhmx" path="res://spowder/scenes/levels/LevelMostlyClosedBox.glb" id="4_wwoh2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlwvx"]
 size = Vector3(41, 21, 51)
 
 [node name="level_01" instance=ExtResource("1_hlbg2")]
-next_level = "uid://ylc1spk0e2o5"
-level_index = 1
 
 [node name="fall_boundary" parent="level_reset_warning_area" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -15)
@@ -18,9 +17,6 @@ shape = SubResource("BoxShape3D_hlwvx")
 
 [node name="pickup_cheese" parent="." index="5" instance=ExtResource("3_yp88g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99944305, 12.00872, -27.001022)
-
-[node name="Cube" parent="Level01" index="0"]
-material_override = ExtResource("4_hlwvx")
 
 [node name="message" type="Control" parent="canvas_layer/control" index="1"]
 layout_mode = 1
@@ -33,4 +29,9 @@ message = "get cheEse!"
 label_visible = true
 metadata/_custom_type_script = "uid://cg7rqcilp6dkr"
 
-[editable path="Level01"]
+[node name="LevelMostlyClosedBox" parent="." index="9" instance=ExtResource("4_wwoh2")]
+
+[node name="Cube" parent="LevelMostlyClosedBox" index="0"]
+surface_material_override/0 = ExtResource("4_hlwvx")
+
+[editable path="LevelMostlyClosedBox"]

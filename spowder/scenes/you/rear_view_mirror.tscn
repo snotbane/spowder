@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ds37tl2me0mvh"]
 
-[ext_resource type="PackedScene" uid="uid://btx71fvom0i4h" path="res://spowder/scenes/you/RearViewMirror.blend" id="1_5eerf"]
+[ext_resource type="PackedScene" uid="uid://byow3nddenico" path="res://spowder/scenes/you/RearViewMirror.glb" id="1_5eerf"]
 [ext_resource type="Shader" uid="uid://b7twjt3twbrd" path="res://spowder/scenes/Mirror.gdshader" id="2_8450v"]
 [ext_resource type="Material" uid="uid://cmiwlcko2tai0" path="res://spowder/scenes/you/upclose.tres" id="3_mh743"]
 [ext_resource type="Script" uid="uid://dxvwmgywaldjj" path="res://spowder/scenes/Mirror.gd" id="4_8r0ac"]
