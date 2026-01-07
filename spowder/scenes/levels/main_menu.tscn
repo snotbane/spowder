@@ -191,31 +191,37 @@ size_flags_horizontal = 4
 columns = 3
 
 [node name="level_button" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+visible = false
 layout_mode = 2
 disabled = true
 message = "1"
 
 [node name="level_button_2" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+visible = false
 layout_mode = 2
 disabled = true
 message = "2"
 
 [node name="level_button_3" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+visible = false
 layout_mode = 2
 disabled = true
 message = "3"
 
 [node name="level_button_4" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+visible = false
 layout_mode = 2
 disabled = true
 message = "4"
 
 [node name="level_button_5" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+visible = false
 layout_mode = 2
 disabled = true
 message = "5"
 
 [node name="level_button_6" parent="canvas_layer/control/v_box_container/grid_container" instance=ExtResource("2_x76qb")]
+visible = false
 layout_mode = 2
 disabled = true
 message = "6"
@@ -241,6 +247,7 @@ message = "exit game"
 label_visible = true
 
 [node name="message_4" type="Control" parent="canvas_layer/control/v_box_container"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_pvj76")
 bbcode = "[shake level=30 rate=100 connected=0]"

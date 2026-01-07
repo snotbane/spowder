@@ -14,14 +14,14 @@ uniform float ao_scale: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform float rough_scale: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform float metal_scale: hint_range(0.0, 1.0, 0.01) = 1.0;
 
-global uniform float jitter_scale;
+global uniform float psx_snap_distance;
 global uniform float jitter_add;
 global uniform float jitter_pulse;
 
 void vertex() {
 	//float dist = distance(CAMERA_POSITION_WORLD, (INV_PROJECTION_MATRIX * vec4(VERTEX, 1.0)).xyz);
 	float dist = length((MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz);
-	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, jitter_scale + (jitter_pulse + jitter_add) * dist);
+	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, psx_snap_distance + (jitter_pulse + jitter_add) * dist);
 }
 
 void fragment() {

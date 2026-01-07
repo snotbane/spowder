@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 snotbane_debug_ghost="*res://addons/snotbane/modules/debug/ghost/DebugGhostAutoload.gd"
 LevelProgressionFarts="*res://spowder/scenes/levels/LevelProgression.gd"
 MusicINst="*res://spowder/scenes/Music.gd"
+PSXScreenEffects="*res://addons/psx_visuals/scripts/PSXAutoload.gd"
 
 [debug]
 
@@ -40,7 +41,7 @@ naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/snotbane/plugin.cfg")
+enabled=PackedStringArray("res://addons/psx_visuals/plugin.cfg", "res://addons/snotbane/plugin.cfg")
 
 [file_customization]
 
@@ -195,4 +196,32 @@ jitter_add={
 jitter_pulse={
 "type": "float",
 "value": 0.0
+}
+psx_affine_strength={
+"type": "float",
+"value": 0.125
+}
+psx_fog_color={
+"type": "color",
+"value": Color(0, 0, 0, 0)
+}
+psx_fog_near={
+"type": "float",
+"value": 0.0
+}
+psx_fog_far={
+"type": "float",
+"value": 0.0
+}
+psx_snap_distance={
+"type": "float",
+"value": 0.1
+}
+psx_bit_depth={
+"type": "int",
+"value": 5
+}
+psx_snap_size={
+"type": "float",
+"value": 0.025
 }
