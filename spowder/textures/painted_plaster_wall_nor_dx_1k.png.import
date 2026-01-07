@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://0p0ub5qmtlmv"
 path.s3tc="res://.godot/imported/painted_plaster_wall_nor_dx_1k.png-5a3c113dbc299529fed4e852b8f50a4d.s3tc.ctex"
+path.etc2="res://.godot/imported/painted_plaster_wall_nor_dx_1k.png-5a3c113dbc299529fed4e852b8f50a4d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://spowder/textures/painted_plaster_wall_nor_dx_1k.png"
-dest_files=["res://.godot/imported/painted_plaster_wall_nor_dx_1k.png-5a3c113dbc299529fed4e852b8f50a4d.s3tc.ctex"]
+dest_files=["res://.godot/imported/painted_plaster_wall_nor_dx_1k.png-5a3c113dbc299529fed4e852b8f50a4d.s3tc.ctex", "res://.godot/imported/painted_plaster_wall_nor_dx_1k.png-5a3c113dbc299529fed4e852b8f50a4d.etc2.ctex"]
 
 [params]
 

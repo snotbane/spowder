@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cucgpf07p1n6o"
 path.s3tc="res://.godot/imported/shotgun_shell_arm.png-05557406c0d5defab157788d821c2daa.s3tc.ctex"
+path.etc2="res://.godot/imported/shotgun_shell_arm.png-05557406c0d5defab157788d821c2daa.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://spowder/scenes/pickup/shell/shotgun_shell_arm.png"
-dest_files=["res://.godot/imported/shotgun_shell_arm.png-05557406c0d5defab157788d821c2daa.s3tc.ctex"]
+dest_files=["res://.godot/imported/shotgun_shell_arm.png-05557406c0d5defab157788d821c2daa.s3tc.ctex", "res://.godot/imported/shotgun_shell_arm.png-05557406c0d5defab157788d821c2daa.etc2.ctex"]
 
 [params]
 

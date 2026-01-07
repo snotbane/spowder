@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr7fp1qwghb7p"
 path.bptc="res://.godot/imported/qwantani_dusk_1_puresky_1k.exr-65c57cc4af07f63ecfd8ec0ecad0d56f.bptc.ctex"
+path.astc="res://.godot/imported/qwantani_dusk_1_puresky_1k.exr-65c57cc4af07f63ecfd8ec0ecad0d56f.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://spowder/scenes/levels/qwantani_dusk_1_puresky_1k.exr"
-dest_files=["res://.godot/imported/qwantani_dusk_1_puresky_1k.exr-65c57cc4af07f63ecfd8ec0ecad0d56f.bptc.ctex"]
+dest_files=["res://.godot/imported/qwantani_dusk_1_puresky_1k.exr-65c57cc4af07f63ecfd8ec0ecad0d56f.bptc.ctex", "res://.godot/imported/qwantani_dusk_1_puresky_1k.exr-65c57cc4af07f63ecfd8ec0ecad0d56f.astc.ctex"]
 
 [params]
 
